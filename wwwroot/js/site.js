@@ -16,28 +16,25 @@ document.getElementById('loanForm').addEventListener('submit', function (event) 
 // update total amount
 function updateTotalPaymentAmount_PlanA() {
 
-    // Price of Vehivle
-    let priceOfVehicle = parseInt(document.getElementById('vehiclePricePlanA').value) || 0;
+    let subtotal = subtotalPaymentCalculator_planA();
 
-    // Down Payment
-    let downPayment = parseInt(document.getElementById('downPaymentPlanA').value) || 0;
+    let taxes = parseDouble(document.getElementById('taxesPlanA').value) || 0;
 
-    // Insurance Type
-    let insuranceType = document.getElementById('insuranceTypePlanA') || 0;
-
-    // Other Fees
-    let otherFees = parseInt(document.getElementById('otherFeesPlanA').value) || 0;
-
-    // Loan Term
-    let loanTerm = parseInt(document.getElementById('loanTermPlanA').value) || 0;
-
-
-    // Taxes 10%
-    let taxes = 0.10;
+    let totalInterestPaid = parseDouble(document.getElementById('totalInterestPaidPlanA').value) || 0;
 
     // Total Payment Amount Calculation
-    let totalPaymentAmount = (priceOfVehicle + otherFees) * (1 + taxes) - downPayment;
+    let totalPaymentAmount = subtotal + taxes + totalInterestPaid;
 
     // Set Total Payment Amount Calculation
     document.getElementById('totalLoanAmountPlanA').textContent = `$${totalPaymentAmount.toFixed(2)}`;
+}
+
+
+// principal payment amount calculator
+function subtotalPaymentCalculator_planA() {
+    let vehiclePrice = parseDouble(document.getElementById('vehiclePricePlanA').value) || 0;
+    let insuarancePrice = parseDouble(document.getElementById('insurancePricePlanA').value) || 0;
+    let otherFees = parseDouble(document.getElementById('otherFeesPlanA').value) || 0;
+
+    return vehiclePrice + insuarancePrice + otherFees;
 }

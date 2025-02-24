@@ -17,7 +17,7 @@ function updateAllItems() {
     updateTotalPaymentAmount_planA();
 }
 
-// update total amount
+// updating total amount
 function updateTotalPaymentAmount_planA() {
 
     let subtotal = subtotalPaymentCalculator_planA();
@@ -36,7 +36,7 @@ function updateTotalPaymentAmount_planA() {
 }
 
 
-// principal payment amount calculator
+// calculating subtotal
 function subtotalPaymentCalculator_planA() {
     let vehiclePrice = parseFloat(document.getElementById('vehiclePricePlanA').value) || 0;
     let insuarancePrice = parseFloat(document.getElementById('insurancePricePlanA').value) || 0;
@@ -45,6 +45,7 @@ function subtotalPaymentCalculator_planA() {
     return vehiclePrice + insuarancePrice + otherFees;
 }
 
+// updating Taxes
 function updateTaxes_planA() {
     let taxRate = parseInt(document.getElementById('taxRatePlanA').value) || 0;
 
@@ -55,6 +56,7 @@ function updateTaxes_planA() {
     document.getElementById('taxesPlanA').textContent = `$ ${taxes.toFixed(2)}`;
 }
 
+// updating Total Loan Amount
 function updateTotalLoanAmount_planA() {
     let subtotal = subtotalPaymentCalculator_planA();
 

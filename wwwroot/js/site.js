@@ -25,7 +25,7 @@ function updateTotalPaymentAmount_planA() {
     // task extract numbers
     let taxes = parseFloat(document.getElementById('taxesPlanA').value) || 0;
     
-
+    // total interest paid
     let totalInterestPaid = parseFloat(document.getElementById('totalInterestPaidPlanA').value) || 0;
 
     // Total Payment Amount Calculation
@@ -45,6 +45,7 @@ function subtotalPaymentCalculator_planA() {
     return vehiclePrice + insuarancePrice + otherFees;
 }
 
+
 // updating Taxes
 function updateTaxes_planA() {
     let taxRate = parseInt(document.getElementById('taxRatePlanA').value) || 0;
@@ -55,6 +56,7 @@ function updateTaxes_planA() {
 
     document.getElementById('taxesPlanA').textContent = `$ ${taxes.toFixed(2)}`;
 }
+
 
 // updating Total Loan Amount
 function updateTotalLoanAmount_planA() {

@@ -1,8 +1,4 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-document.getElementById('loanForm').addEventListener('submit', function (event) {
+﻿document.getElementById('loanForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
     let amount = parseFloat(document.getElementById('loanAmount').value);
@@ -13,12 +9,22 @@ document.getElementById('loanForm').addEventListener('submit', function (event) 
     document.getElementById('result').innerText = `Monthly Payment: $${monthlyPayment.toFixed(2)}`;
 });
 
+
+// Trigger function
+function updateAllItems() {
+    updateTaxes_planA();
+    updateTotalLoanAmount_planA();
+    updateTotalPaymentAmount_planA();
+}
+
 // update total amount
-function updateTotalPaymentAmount_PlanA() {
+function updateTotalPaymentAmount_planA() {
 
     let subtotal = subtotalPaymentCalculator_planA();
 
+    // task extract numbers
     let taxes = parseFloat(document.getElementById('taxesPlanA').value) || 0;
+    
 
     let totalInterestPaid = parseFloat(document.getElementById('totalInterestPaidPlanA').value) || 0;
 
@@ -40,11 +46,21 @@ function subtotalPaymentCalculator_planA() {
 }
 
 function updateTaxes_planA() {
-    let taxRate = parseInt(document.getElementById('taxRatePlanA')) || 0;
+    let taxRate = parseInt(document.getElementById('taxRatePlanA').value) || 0;
 
     let subtotal = subtotalPaymentCalculator_planA();
 
     let taxes = subtotal * taxRate / 100;
 
     document.getElementById('taxesPlanA').textContent = `$ ${taxes.toFixed(2)}`;
+}
+
+function updateTotalLoanAmount_planA() {
+    let subtotal = subtotalPaymentCalculator_planA();
+
+    let downPayment = parseFloat(document.getElementById('downPaymentPlanA').value) || 0;
+
+    let loanAmount = subtotal - downPayment;
+
+    document.getElementById('totalLoanAmountPlanA').textContent = `$ ${loanAmount.toFixed(2)}`
 }

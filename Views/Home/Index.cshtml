@@ -28,13 +28,13 @@
             <!-- Price of Vehicle -->
             <div class="form-row">
                 <label for="vehiclePricePlanA" class="label">Price of Vehicle: </label>
-                <input type="text" id="vehiclePricePlanA" placeholder="0" oninput="updateTotalPaymentAmount_PlanA()">
+                <input type="text" id="vehiclePricePlanA" placeholder="0" oninput="updateAllItems()">
             </div>
 
             <!-- Down Payment -->
             <div class="form-row">
                 <label for="downPaymentPlanA" class="label">Down Payment:</label>
-                <input type="text" id="downPaymentPlanA" placeholder="0" oninput="updateTotalPaymentAmount_PlanA()">
+                <input type="text" id="downPaymentPlanA" placeholder="0" oninput="updateAllItems()">
             </div>
 
             <div class="border-line"></div>
@@ -42,7 +42,7 @@
             <!-- insurance Type -->
             <div class="form-row">
                 <label for="insuranceTypePlanA" class="label">Insurance Type:</label>
-                <select name="insuranceTypePlanA" id="insuranceTypePlanA" oninput="updateTotalPaymentAmount_PlanA()">
+                <select name="insuranceTypePlanA" id="insuranceTypePlanA" oninput="updateAllItems()">
                     <option value="select option"></option>
                     <option value="insuranceA_1yr">1 year guarantee</option>
                     <option value="insuranceA_3yrs">3 years guarantee</option>
@@ -60,13 +60,13 @@
             <!-- Other Fees -->
             <div class="form-row">
                 <label for="otherFeesPlanA" class="label">Other Fees:</label>
-                $  <input type="text" id="otherFeesPlanA" placeholder="0" oninput="updateTotalPaymentAmount_PlanA()">
+                $  <input type="text" id="otherFeesPlanA" placeholder="0" oninput="updateAllItems()">
             </div>
 
             <!-- Tax Rate -->
             <div class="form-row">
                 <label class="label">Tax Rate:</label>
-                <input type="text" id="taxRatePlanA" placeholder="0" oninput="updateTaxes_planA()">  %
+                <input type="text" id="taxRatePlanA" placeholder="0" oninput="updateAllItems()">  %
             </div>
 
             <!-- Taxes -->
@@ -95,7 +95,7 @@
 
             <!-- Interest Rate -->
             <div class="form-row">
-                <label id="interestRatePlanA" class="label">Sales Tax:</label>
+                <label id="interestRatePlanA" class="label">Interest Rate:</label>
                 <label>13%</label>
             </div>
 
@@ -107,8 +107,8 @@
 
             <!-- Total Loan Amount -->
             <div class="form-row">
-                <label id="totalLoanAmountPlanA" class="label">Total Loan Amount:</label>
-                <label>$ 999,999</label>
+                <label class="label">Total Loan Amount:</label>
+                <span id="totalLoanAmountPlanA"></span>
             </div>
 
             <!-- Monthly Payment -->

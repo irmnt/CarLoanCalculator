@@ -18,23 +18,33 @@ function updateTotalPaymentAmount_PlanA() {
 
     let subtotal = subtotalPaymentCalculator_planA();
 
-    let taxes = parseDouble(document.getElementById('taxesPlanA').value) || 0;
+    let taxes = parseFloat(document.getElementById('taxesPlanA').value) || 0;
 
-    let totalInterestPaid = parseDouble(document.getElementById('totalInterestPaidPlanA').value) || 0;
+    let totalInterestPaid = parseFloat(document.getElementById('totalInterestPaidPlanA').value) || 0;
 
     // Total Payment Amount Calculation
     let totalPaymentAmount = subtotal + taxes + totalInterestPaid;
 
     // Set Total Payment Amount Calculation
-    document.getElementById('totalLoanAmountPlanA').textContent = `$${totalPaymentAmount.toFixed(2)}`;
+    document.getElementById('totalPaymentAmountPlanA').textContent = `$${totalPaymentAmount.toFixed(2)}`;
 }
 
 
 // principal payment amount calculator
 function subtotalPaymentCalculator_planA() {
-    let vehiclePrice = parseDouble(document.getElementById('vehiclePricePlanA').value) || 0;
-    let insuarancePrice = parseDouble(document.getElementById('insurancePricePlanA').value) || 0;
-    let otherFees = parseDouble(document.getElementById('otherFeesPlanA').value) || 0;
+    let vehiclePrice = parseFloat(document.getElementById('vehiclePricePlanA').value) || 0;
+    let insuarancePrice = parseFloat(document.getElementById('insurancePricePlanA').value) || 0;
+    let otherFees = parseFloat(document.getElementById('otherFeesPlanA').value) || 0;
 
     return vehiclePrice + insuarancePrice + otherFees;
+}
+
+function updateTaxes_planA() {
+    let taxRate = parseInt(document.getElementById('taxRatePlanA')) || 0;
+
+    let subtotal = subtotalPaymentCalculator_planA();
+
+    let taxes = subtotal * taxRate / 100;
+
+    document.getElementById('taxesPlanA').textContent = `$ ${taxes.toFixed(2)}`;
 }

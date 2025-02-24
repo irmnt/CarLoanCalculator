@@ -57,7 +57,7 @@ body {
 }
 
 .label {
-    width: 150px; /* Fixed width for alignment */
+    width: 180px; /* Fixed width for alignment */
     text-align: right;
     font-weight: bold;
     margin-right: 10px;

@@ -12,6 +12,7 @@
 
 // Trigger function
 function updateAllItems() {
+    setInsurancePrice();
     updateTaxes_planA();
     updateTotalLoanAmount_planA();
     updateTotalPaymentAmount_planA();
@@ -20,12 +21,14 @@ function updateAllItems() {
 // updating total amount
 function updateTotalPaymentAmount_planA() {
 
+    // Calculate subtotal
     let subtotal = subtotalPaymentCalculator_planA();
 
-    // task extract numbers
-    let taxes = parseFloat(document.getElementById('taxesPlanA').value) || 0;
+    // Task extract numbers
+    // let taxes = parseFloat((document.getElementById('taxesPlanA').value || 0;
+    let taxes = 0;
     
-    // total interest paid
+    // Total Interest Paid
     let totalInterestPaid = parseFloat(document.getElementById('totalInterestPaidPlanA').value) || 0;
 
     // Total Payment Amount Calculation
@@ -38,11 +41,16 @@ function updateTotalPaymentAmount_planA() {
 
 // calculating subtotal
 function subtotalPaymentCalculator_planA() {
+
+    // Get the Vehicle Price, Insurance Price and Other Fees
     let vehiclePrice = parseFloat(document.getElementById('vehiclePricePlanA').value) || 0;
-    let insuarancePrice = parseFloat(document.getElementById('insurancePricePlanA').value) || 0;
+
+    // task extract numbers
+    // let insurancePrice = parseFloat(document.getElementById('insurancePricePlanA').value) || 0;
+    let insurancePrice = 0;
     let otherFees = parseFloat(document.getElementById('otherFeesPlanA').value) || 0;
 
-    return vehiclePrice + insuarancePrice + otherFees;
+    return vehiclePrice + insurancePrice + otherFees;
 }
 
 
@@ -67,4 +75,16 @@ function updateTotalLoanAmount_planA() {
     let loanAmount = subtotal - downPayment;
 
     document.getElementById('totalLoanAmountPlanA').textContent = `$ ${loanAmount.toFixed(2)}`
+}
+
+
+// Setting Insurance Price
+function setInsurancePrice() {
+    let insuranceType = document.getElementById('insuranceTypePlanA').value;
+    let insurancePrice = insuranceType == 'insuranceA_1yr' ? '$ 1,000'
+        : insuranceType == 'insuranceA_3yrs' ? '$ 2,000'
+            : insuranceType == 'insuranceA_5yrs' ? '$ 2,500'
+                : insuranceType == 'insuranceA_10yrs' ? '$ 3,000' : '$ 0';
+
+    document.getElementById('insurancePricePlanA').textContent = insurancePrice;
 }

@@ -57,7 +57,7 @@ body {
 }
 
 .label {
-    width: 180px; /* Fixed width for alignment */
+    width: 180px;
     text-align: right;
     font-weight: bold;
     margin-right: 10px;
@@ -74,11 +74,13 @@ h2 {
 }
 
 input[type="text"] {
+    height: 40px;
     padding: 5px;
     flex: 1; /* Allows the input to grow and take remaining space */
     width: calc(100% - 160px); /* Subtracts the label width + margin */
 }
 
 select {
+    height: 40px;
     flex:1;
 }

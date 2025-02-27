@@ -24,15 +24,17 @@ function updateTotalPaymentAmount_planA() {
     // Calculate subtotal
     let subtotal = subtotalPaymentCalculator_planA();
 
-    // Task extract numbers
-    // let taxes = parseFloat((document.getElementById('taxesPlanA').value || 0;
-    let taxes = 0;
-    
+    // Taxes
+    let taxes = parseFloat(document.getElementById('taxesPlanA').textContent.replace(/[^0-9.-]+/g, "")) || 0;
+
+    // Insurance Price
+    let insurancePrice = parseFloat(document.getElementById('insurancePricePlanA').textContent.replace(/[^0-9.]+/g, "")) || 0;
+
     // Total Interest Paid
     let totalInterestPaid = parseFloat(document.getElementById('totalInterestPaidPlanA').value) || 0;
 
     // Total Payment Amount Calculation
-    let totalPaymentAmount = subtotal + taxes + totalInterestPaid;
+    let totalPaymentAmount = subtotal + taxes + insurancePrice + totalInterestPaid;
 
     // Set Total Payment Amount Calculation
     document.getElementById('totalPaymentAmountPlanA').textContent = `$${totalPaymentAmount.toFixed(2)}`;

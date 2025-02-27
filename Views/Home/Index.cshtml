@@ -53,7 +53,7 @@
 
             <!-- insurance Price -->
             <div class="form-row">
-                <label class="label">insurance Price:</label>
+                <label class="label">Insurance Price:</label>
                 <span id="insurancePricePlanA"></span>
             </div>
 
@@ -78,12 +78,12 @@
             <!-- Loan Term -->
             <div class="form-row">
                 <label for="loanTermPlanA" class="label">Loan Term:</label>
-                <select name="loanTermPlanA" id="loanTermPlanA">
+                <select name="loanTermPlanA" id="loanTermPlanA" oninput="updateAllItems()">
                     <option value="select option"></option>
                     <option value="loanTermA_12m">12 months</option>
-                    <option value="loanTermA_24m">24 months</option>
                     <option value="loanTermA_36m">36 months</option>
-                    <option value="loanTermA_48m">48 months</option>
+                    <option value="loanTermA_60m">60 months</option>
+                    <option value="loanTermA_120m">120 months</option>
                 </select>
             </div>
 
@@ -95,14 +95,14 @@
 
             <!-- Interest Rate -->
             <div class="form-row">
-                <label id="interestRatePlanA" class="label">Interest Rate:</label>
-                <label>13%</label>
+                <label class="label">Annual Interest Rate:</label>
+                <span id="interestRatePlanA"></span>
             </div>
 
             <!-- Total Interest Paid -->
             <div class="form-row">
                 <label class="label">Total Interest Paid:</label>
-                <label id="totalInterestPaidPlanA">$ 999,999</label>
+                <span id="totalInterestPaidPlanA"></span>
             </div>
 
             <!-- Total Loan Amount -->
@@ -113,8 +113,8 @@
 
             <!-- Monthly Payment -->
             <div class="form-row">
-                <label id="monthlyPaymentPlanA" class="label">Monthly Payment</label>
-                <label>$ 1,111</label>
+                <label class="label">Monthly Payment: </label>
+                <span id="monthlyPaymentPlanA"></span>
             </div>
         </div>
         <!-- Plan B -->

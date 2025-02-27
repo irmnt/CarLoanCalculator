@@ -12,10 +12,13 @@
 
 // Trigger function
 function updateAllItems() {
+    setInterestRate();
     setInsurancePrice();
     updateTaxes_planA();
     updateTotalLoanAmount_planA();
     updateTotalPaymentAmount_planA();
+    monthlyPaymentCalculator();
+    totalInterestPaidCalculator();
 }
 
 // updating total amount
@@ -90,3 +93,41 @@ function setInsurancePrice() {
 
     document.getElementById('insurancePricePlanA').textContent = insurancePrice;
 }
+
+
+// Setting Interest Rate
+function setInterestRate() {
+    let loanTerm = document.getElementById('loanTermPlanA').value || '';
+    let interestRate = loanTerm == 'loanTermA_12m' ? '1.5 %'
+        : loanTerm == 'loanTermA_36m' ? '2.5 %'
+        : loanTerm == 'loanTermA_60m' ? '3.5 %'
+                : loanTerm == 'loanTermA_120m' ? '5.0 %' : '0 %';
+
+    document.getElementById('interestRatePlanA').textContent = interestRate;
+}
+
+
+// Calculating Monthly Payment
+function monthlyPaymentCalculator() {
+    let totalLoanAmount = parseFloat(document.getElementById('totalLoanAmountPlanA').textContent.replace(/[^0-9.-]+/g, "")) || 0;
+    let monthlyInterestRate = parseFloat(document.getElementById('interestRatePlanA').textContent.replace(/[^0-9.]+/g, "")) / 12 || 0;
+    let loanTerm = parseInt(document.getElementById('loanTermPlanA').value.replace(/[^0-9.]+/g, "")) || 0;
+
+    let growthFactor = (1 + monthlyInterestRate) ** loanTerm;
+    let monthlyPayment = (totalLoanAmount * monthlyInterestRate * growthFactor) / (growthFactor - 1);
+
+    document.getElementById('monthlyPaymentPlanA').textContent = `$ ${monthlyPayment.toFixed(2)}`;
+}
+
+// Calculating Total Interest Paid
+function totalInterestPaidCalculator() {
+    let totalLoanAmount = parseFloat(document.getElementById('totalLoanAmountPlanA').textContent.replace(/[^0-9.-]+/g, "")) || 0;
+    let monthlyPayment = parseFloat(document.getElementById('monthlyPaymentPlanA').textContent.replace(/[^0-9.-]+/g, "")) || 0;
+    let loanTerm = parseInt(document.getElementById('loanTermPlanA').value.replace(/[^0-9.]+/g, "")) || 0;
+
+    let totalInterestPaid = (monthlyPayment * loanTerm) - totalLoanAmount;
+    document.getElementById('totalInterestPaidPlanA').textContent = `$ ${totalInterestPaid.toFixed(2)}`;
+}
+
+// To do number formatting
+// To do fix loan payment performance

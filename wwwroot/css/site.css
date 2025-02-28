@@ -45,6 +45,14 @@ body {
     border: 4px solid slategrey;
 }
 
+    .column:has(input[type="radio"]:checked) {
+        background-color: rgba(0, 130, 200, 0.5);
+    }
+
+input[type="radio"]:checked + h2 {
+    font-weight: bold;
+}
+
 .form-row {
     display: flex;
     align-items: center;

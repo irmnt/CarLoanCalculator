@@ -15,7 +15,7 @@
         <div class="column">
             <!-- Radio Button for Plan A -->
             <div class="form-row">
-                <input type="radio" id="planA" name="loanPlanA" value="A" checked>
+                <input type="radio" id="planA" name="loanPlan" value="A" checked>
                 <h2 for="planA">Plan A</h2>
             </div>
 
@@ -28,13 +28,13 @@
             <!-- Price of Vehicle -->
             <div class="form-row">
                 <label for="vehiclePricePlanA" class="label">Price of Vehicle: </label>
-                <input type="text" id="vehiclePricePlanA" placeholder="0" oninput="updateAllItems()">
+                <input type="text" id="vehiclePricePlanA" placeholder="0" onblur="updateAllItems()">
             </div>
 
             <!-- Down Payment -->
             <div class="form-row">
                 <label for="downPaymentPlanA" class="label">Down Payment:</label>
-                <input type="text" id="downPaymentPlanA" placeholder="0" oninput="updateAllItems()">
+                <input type="text" id="downPaymentPlanA" placeholder="0" onblur="updateAllItems()">
             </div>
 
             <div class="border-line"></div>
@@ -60,13 +60,13 @@
             <!-- Other Fees -->
             <div class="form-row">
                 <label for="otherFeesPlanA" class="label">Other Fees:</label>
-                $  <input type="text" id="otherFeesPlanA" placeholder="0" oninput="updateAllItems()">
+                $  <input type="text" id="otherFeesPlanA" placeholder="0" onblur="updateAllItems()">
             </div>
 
             <!-- Tax Rate -->
             <div class="form-row">
                 <label class="label">Tax Rate:</label>
-                <input type="text" id="taxRatePlanA" placeholder="0" oninput="updateAllItems()">  %
+                <input type="text" id="taxRatePlanA" placeholder="0" onblur="updateAllItems()">  %
             </div>
 
             <!-- Taxes -->
@@ -121,7 +121,7 @@
         <div class="column">
             <!-- Radio Button for Plan B -->
             <div class="form-row">
-                <input type="radio" id="planB" name="loanPlanB" value="B">
+                <input type="radio" id="planB" name="loanPlan" value="B">
                 <h2 for="planB">Plan B</h2>
             </div>
 
@@ -227,7 +227,7 @@
         <div class="column">
             <!-- Radio Button for Plan C -->
             <div class="form-row">
-                <input type="radio" id="planC" name="loanPlanC" value="C">
+                <input type="radio" id="planC" name="loanPlan" value="C">
                 <h2 for="planA">Plan C</h2>
             </div>
 

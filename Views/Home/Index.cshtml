@@ -28,13 +28,13 @@
             <!-- Price of Vehicle -->
             <div class="form-row">
                 <label for="vehiclePricePlanA" class="label">Price of Vehicle: </label>
-                <input type="text" id="vehiclePricePlanA" placeholder="0" onblur="updateAllItems()">
+                <input type="text" id="vehiclePricePlanA" placeholder="0" onblur="updateAllItems('A')">
             </div>
 
             <!-- Down Payment -->
             <div class="form-row">
                 <label for="downPaymentPlanA" class="label">Down Payment:</label>
-                <input type="text" id="downPaymentPlanA" placeholder="0" onblur="updateAllItems()">
+                <input type="text" id="downPaymentPlanA" placeholder="0" onblur="updateAllItems('A')">
             </div>
 
             <div class="border-line"></div>
@@ -42,7 +42,7 @@
             <!-- insurance Type -->
             <div class="form-row">
                 <label for="insuranceTypePlanA" class="label">Insurance Type:</label>
-                <select name="insuranceTypePlanA" id="insuranceTypePlanA" oninput="updateAllItems()">
+                <select name="insuranceTypePlanA" id="insuranceTypePlanA" oninput="updateAllItems('A')">
                     <option value="select option"></option>
                     <option value="insuranceA_1yr">1 year guarantee</option>
                     <option value="insuranceA_3yrs">3 years guarantee</option>
@@ -60,13 +60,13 @@
             <!-- Other Fees -->
             <div class="form-row">
                 <label for="otherFeesPlanA" class="label">Other Fees:</label>
-                $  <input type="text" id="otherFeesPlanA" placeholder="0" onblur="updateAllItems()">
+                $  <input type="text" id="otherFeesPlanA" placeholder="0" onblur="updateAllItems('A')">
             </div>
 
             <!-- Tax Rate -->
             <div class="form-row">
                 <label class="label">Tax Rate:</label>
-                <input type="text" id="taxRatePlanA" placeholder="0" onblur="updateAllItems()">  %
+                <input type="text" id="taxRatePlanA" placeholder="0" onblur="updateAllItems('A')">  %
             </div>
 
             <!-- Taxes -->
@@ -78,7 +78,7 @@
             <!-- Loan Term -->
             <div class="form-row">
                 <label for="loanTermPlanA" class="label">Loan Term:</label>
-                <select name="loanTermPlanA" id="loanTermPlanA" oninput="updateAllItems()">
+                <select name="loanTermPlanA" id="loanTermPlanA" oninput="updateAllItems('A')">
                     <option value="select option"></option>
                     <option value="loanTermA_12m">12 months</option>
                     <option value="loanTermA_36m">36 months</option>
@@ -134,13 +134,13 @@
             <!-- Price of Vehicle -->
             <div class="form-row">
                 <label for="vehiclePricePlanB" class="label">Price of Vehicle: </label>
-                <input type="text" id="vehiclePricePlanB" placeholder="0" oninput="updateTotalPaymentAmount_PlanB()">
+                <input type="text" id="vehiclePricePlanB" placeholder="0" oninput="totalPaymentAmountCalculator_PlanB()">
             </div>
 
             <!-- Down Payment -->
             <div class="form-row">
                 <label for="downPaymentPlanB" class="label">Down Payment:</label>
-                <input type="text" id="downPaymentPlanB" placeholder="0" oninput="updateTotalPaymentAmount_PlanB()">
+                <input type="text" id="downPaymentPlanB" placeholder="0" oninput="totalPaymentAmountCalculator_PlanB()">
             </div>
 
             <div class="border-line"></div>
@@ -148,7 +148,7 @@
             <!-- insurance Type -->
             <div class="form-row">
                 <label for="insuranceTypePlanB" class="label">Insurance Type:</label>
-                <select name="insuranceTypePlanB" id="insuranceTypePlanB" oninput="updateTotalPaymentAmount_PlanB()">
+                <select name="insuranceTypePlanB" id="insuranceTypePlanB" oninput="totalPaymentAmountCalculator_PlanB()">
                     <option value="select option"></option>
                     <option value="insuranceB_1yr">1 year guarantee</option>
                     <option value="insuranceB_3yrs">3 years guarantee</option>
@@ -166,7 +166,7 @@
             <!-- Other Fees -->
             <div class="form-row">
                 <label for="otherFeesPlanB" class="label">Other Fees:</label>
-                $  <input type="text" id="otherFeesPlanB" placeholder="0" oninput="updateTotalPaymentAmount_PlanB()">
+                $  <input type="text" id="otherFeesPlanB" placeholder="0" oninput="totalPaymentAmountCalculator_PlanB()">
             </div>
 
             <!-- Tax Rate -->
@@ -240,13 +240,13 @@
             <!-- Price of Vehicle -->
             <div class="form-row">
                 <label for="vehiclePricePlanC" class="label">Price of Vehicle: </label>
-                <input type="text" id="vehiclePricePlanC" placeholder="0" oninput="updateTotalPaymentAmount_PlanC()">
+                <input type="text" id="vehiclePricePlanC" placeholder="0" oninput="totalPaymentAmountCalculator_PlanC()">
             </div>
 
             <!-- Down Payment -->
             <div class="form-row">
                 <label for="downPaymentPlanC" class="label">Down Payment:</label>
-                <input type="text" id="downPaymentPlanC" placeholder="0" oninput="updateTotalPaymentAmount_PlanC()">
+                <input type="text" id="downPaymentPlanC" placeholder="0" oninput="totalPaymentAmountCalculator_PlanC()">
             </div>
 
             <div class="border-line"></div>
@@ -254,7 +254,7 @@
             <!-- insurance Type -->
             <div class="form-row">
                 <label for="insuranceTypePlanC" class="label">Insurance Type:</label>
-                <select name="insuranceTypePlanC" id="insuranceTypePlanC" oninput="updateTotalPaymentAmount_PlanC()">
+                <select name="insuranceTypePlanC" id="insuranceTypePlanC" oninput="totalPaymentAmountCalculator_PlanC()">
                     <option value="select option"></option>
                     <option value="insuranceC_1yr">1 year guarantee</option>
                     <option value="insuranceC_3yrs">3 years guarantee</option>
@@ -272,7 +272,7 @@
             <!-- Other Fees -->
             <div class="form-row">
                 <label for="otherFeesPlanC" class="label">Other Fees:</label>
-                $  <input type="text" id="otherFeesPlanC" placeholder="0" oninput="updateTotalPaymentAmount_PlanC()">
+                $  <input type="text" id="otherFeesPlanC" placeholder="0" oninput="totalPaymentAmountCalculator_PlanC()">
             </div>
 
             <!-- Tax Rate -->

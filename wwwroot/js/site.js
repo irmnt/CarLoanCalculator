@@ -11,113 +11,113 @@
 
 
 // Trigger function
-function updateAllItems() {
-    setInterestRate();
-    setInsurancePrice();
-    updateTaxes_planA();
-    updateTotalLoanAmount_planA();
-    updateTotalPaymentAmount_planA();
-    monthlyPaymentCalculator();
-    totalInterestPaidCalculator();
+function updateAllItems(plan) {
+    setInterestRate(plan);
+    setInsurancePrice(plan);
+    taxesCalculator(plan);
+    totalLoanAmountCalculator(plan);
+    monthlyPaymentCalculator(plan);
+    totalInterestPaidCalculator(plan);
+    totalPaymentAmountCalculator(plan);
 }
 
 // updating total amount
-function updateTotalPaymentAmount_planA() {
+function totalPaymentAmountCalculator(plan) {
 
     // Calculate subtotal
-    let subtotal = subtotalPaymentCalculator_planA();
+    let subtotal = subtotalPaymentCalculator(plan);
 
     // Taxes
-    let taxes = parseFloat(document.getElementById('taxesPlanA').textContent.replace(/[^0-9.-]+/g, "")) || 0;
+    let taxes = parseFloat(document.getElementById('taxesPlan' + plan).textContent.replace(/[^0-9.-]+/g, "")) || 0;
 
     // Total Interest Paid
-    let totalInterestPaid = parseFloat(document.getElementById('totalInterestPaidPlanA').textContent.replace(/[^0-9.]+/g, "")) || 0;
+    let totalInterestPaid = parseFloat(document.getElementById('totalInterestPaidPlan' + plan).textContent.replace(/[^0-9.]+/g, "")) || 0;
 
     // Total Payment Amount Calculation and formatting to currency
     let totalPaymentAmount = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(subtotal + taxes + totalInterestPaid);
 
     // Set Total Payment Amount Calculation
-    document.getElementById('totalPaymentAmountPlanA').textContent = totalPaymentAmount;
+    document.getElementById('totalPaymentAmountPlan' + plan).textContent = totalPaymentAmount;
 }
 
 
 // calculating subtotal
-function subtotalPaymentCalculator_planA() {
+function subtotalPaymentCalculator(plan) {
 
     // Get the Vehicle Price, Insurance Price and Other Fees
-    let vehiclePrice = parseFloat(document.getElementById('vehiclePricePlanA').value.replace(/[^0-9.-]+/g, "")) || 0;
+    let vehiclePrice = parseFloat(document.getElementById('vehiclePricePlan' + plan).value.replace(/[^0-9.-]+/g, "")) || 0;
 
     // Insurance Price
-    let insurancePrice = parseFloat(document.getElementById('insurancePricePlanA').textContent.replace(/[^0-9.]+/g, "")) || 0;
+    let insurancePrice = parseFloat(document.getElementById('insurancePricePlan' + plan).textContent.replace(/[^0-9.]+/g, "")) || 0;
 
     // Other fees
-    let otherFees = parseFloat(document.getElementById('otherFeesPlanA').value.replace(/[^0-9.]+/g, "")) || 0;
+    let otherFees = parseFloat(document.getElementById('otherFeesPlan' + plan).value.replace(/[^0-9.]+/g, "")) || 0;
 
     return vehiclePrice + insurancePrice + otherFees;
 }
 
 
 // updating Taxes
-function updateTaxes_planA() {
-    let taxRate = parseInt(document.getElementById('taxRatePlanA').value.replace(/[^0-9.]+/g, "")) || 0;
+function taxesCalculator(plan) {
+    let taxRate = parseInt(document.getElementById('taxRatePlan' + plan).value.replace(/[^0-9.]+/g, "")) || 0;
 
-    let subtotal = subtotalPaymentCalculator_planA();
+    let subtotal = subtotalPaymentCalculator('A');
 
     let taxes = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(subtotal * taxRate / 100);
 
-    document.getElementById('taxesPlanA').textContent = taxes;
+    document.getElementById('taxesPlan' + plan).textContent = taxes;
 }
 
 
 // updating Total Loan Amount
-function updateTotalLoanAmount_planA() {
-    let loanTerm = document.getElementById('loanTermPlanA').value;
+function totalLoanAmountCalculator(plan) {
+    let loanTerm = document.getElementById('loanTermPlan' + plan).value;
 
     if (loanTerm == 'select option') {
-        document.getElementById('totalLoanAmountPlanA').textContent = `$ 0`
+        document.getElementById('totalLoanAmountPlan' + plan).textContent = `$ 0`
 
     } else {
-        let subtotal = subtotalPaymentCalculator_planA();
+        let subtotal = subtotalPaymentCalculator('A');
 
-        let downPayment = parseFloat(document.getElementById('downPaymentPlanA').value.replace(/[^0-9.]+/g, "")) || 0;
+        let downPayment = parseFloat(document.getElementById('downPaymentPlan' + plan).value.replace(/[^0-9.]+/g, "")) || 0;
 
         // Calculate Total Loan Amount and format to currency
         let loanAmount = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(subtotal - downPayment);
 
-        document.getElementById('totalLoanAmountPlanA').textContent = loanAmount;
+        document.getElementById('totalLoanAmountPlan' + plan).textContent = loanAmount;
     }
 }
 
 
 // Setting Insurance Price
-function setInsurancePrice() {
-    let insuranceType = document.getElementById('insuranceTypePlanA').value;
-    let insurancePrice = insuranceType == 'insuranceA_1yr' ? '$ 1,000'
-        : insuranceType == 'insuranceA_3yrs' ? '$ 2,000'
-            : insuranceType == 'insuranceA_5yrs' ? '$ 2,500'
-                : insuranceType == 'insuranceA_10yrs' ? '$ 3,000' : '$ 0';
+function setInsurancePrice(plan) {
+    let insuranceType = document.getElementById('insuranceTypePlan' + plan).value;
+    let insurancePrice = insuranceType == 'insurance' + plan + '_1yr' ? '$ 1,000'
+        : insuranceType == 'insurance' + plan + '_3yrs' ? '$ 2,000'
+            : insuranceType == 'insurance' + plan + '_5yrs' ? '$ 2,500'
+                : insuranceType == 'insurance' + plan + '_10yrs' ? '$ 3,000' : '$ 0';
 
-    document.getElementById('insurancePricePlanA').textContent = insurancePrice;
+    document.getElementById('insurancePricePlan' + plan).textContent = insurancePrice;
 }
 
 
 // Setting Interest Rate
-function setInterestRate() {
-    let loanTerm = document.getElementById('loanTermPlanA').value || '';
-    let interestRate = loanTerm == 'loanTermA_12m' ? '1.5 %'
-        : loanTerm == 'loanTermA_36m' ? '2.5 %'
-        : loanTerm == 'loanTermA_60m' ? '3.5 %'
-                : loanTerm == 'loanTermA_120m' ? '5.0 %' : '0 %';
+function setInterestRate(plan) {
+    let loanTerm = document.getElementById('loanTermPlan' + plan).value || '';
+    let interestRate = loanTerm == 'loanTerm' + plan + '_12m' ? '1.5 %'
+        : loanTerm == 'loanTerm' + plan + '_36m' ? '2.5 %'
+            : loanTerm == 'loanTerm' + plan + '_60m' ? '3.5 %'
+                : loanTerm == 'loanTerm' + plan + '_120m' ? '5.0 %' : '0 %';
 
-    document.getElementById('interestRatePlanA').textContent = interestRate;
+    document.getElementById('interestRatePlan' + plan).textContent = interestRate;
 }
 
 
 // Calculating Monthly Payment
-function monthlyPaymentCalculator() {
-    let totalLoanAmount = parseFloat(document.getElementById('totalLoanAmountPlanA').textContent.replace(/[^0-9.-]+/g, "")) || 0;
-    let annualInterestRate = parseFloat(document.getElementById('interestRatePlanA').textContent.replace(/[^0-9.]+/g, "")) || 0;
-    let loanTerm = parseInt(document.getElementById('loanTermPlanA').value.replace(/[^0-9.]+/g, "")) || 0;
+function monthlyPaymentCalculator(plan) {
+    let totalLoanAmount = parseFloat(document.getElementById('totalLoanAmountPlan' + plan).textContent.replace(/[^0-9.-]+/g, "")) || 0;
+    let annualInterestRate = parseFloat(document.getElementById('interestRatePlan' + plan).textContent.replace(/[^0-9.]+/g, "")) || 0;
+    let loanTerm = parseInt(document.getElementById('loanTermPlan' + plan).value.replace(/[^0-9.]+/g, "")) || 0;
 
     // Validate all values are set
     if (totalLoanAmount > 0 && annualInterestRate > 0 && loanTerm > 0) {
@@ -127,18 +127,18 @@ function monthlyPaymentCalculator() {
 
         // Format monthly payment to currency
         let formatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(monthlyPayment);
-        document.getElementById('monthlyPaymentPlanA').textContent = formatted;
+        document.getElementById('monthlyPaymentPlan' + plan).textContent = formatted;
     }
     else {
-        document.getElementById('monthlyPaymentPlanA').textContent = `$ 0`;
+        document.getElementById('monthlyPaymentPlan' + plan).textContent = `$ 0`;
     }
 }
 
 // Calculating Total Interest Paid
-function totalInterestPaidCalculator() {
-    let totalLoanAmount = parseFloat(document.getElementById('totalLoanAmountPlanA').textContent.replace(/[^0-9.-]+/g, "")) || 0;
-    let monthlyPayment = parseFloat(document.getElementById('monthlyPaymentPlanA').textContent.replace(/[^0-9.-]+/g, "")) || 0;
-    let loanTerm = parseInt(document.getElementById('loanTermPlanA').value.replace(/[^0-9.]+/g, "")) || 0;
+function totalInterestPaidCalculator(plan) {
+    let totalLoanAmount = parseFloat(document.getElementById('totalLoanAmountPlan' + plan).textContent.replace(/[^0-9.-]+/g, "")) || 0;
+    let monthlyPayment = parseFloat(document.getElementById('monthlyPaymentPlan' + plan).textContent.replace(/[^0-9.-]+/g, "")) || 0;
+    let loanTerm = parseInt(document.getElementById('loanTermPlan' + plan).value.replace(/[^0-9.]+/g, "")) || 0;
 
     // Validate all values are set and calculate total interest paid
     let totalInterestPaid = monthlyPayment > 0 && loanTerm > 0 && totalLoanAmount > 0
@@ -148,5 +148,5 @@ function totalInterestPaidCalculator() {
     // Format monthly payment to currency
     let formatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalInterestPaid);
 
-    document.getElementById('totalInterestPaidPlanA').textContent = formatted;
+    document.getElementById('totalInterestPaidPlan' + plan).textContent = formatted;
 }

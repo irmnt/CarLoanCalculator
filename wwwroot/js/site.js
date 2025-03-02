@@ -61,7 +61,7 @@ function subtotalPaymentCalculator(plan) {
 function taxesCalculator(plan) {
     let taxRate = parseInt(document.getElementById('taxRatePlan' + plan).value.replace(/[^0-9.]+/g, "")) || 0;
 
-    let subtotal = subtotalPaymentCalculator('A');
+    let subtotal = subtotalPaymentCalculator(plan);
 
     let taxes = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(subtotal * taxRate / 100);
 
@@ -77,7 +77,7 @@ function totalLoanAmountCalculator(plan) {
         document.getElementById('totalLoanAmountPlan' + plan).textContent = `$ 0`
 
     } else {
-        let subtotal = subtotalPaymentCalculator('A');
+        let subtotal = subtotalPaymentCalculator(plan);
 
         let downPayment = parseFloat(document.getElementById('downPaymentPlan' + plan).value.replace(/[^0-9.]+/g, "")) || 0;
 

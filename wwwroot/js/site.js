@@ -1,13 +1,7 @@
-﻿document.getElementById('loanForm').addEventListener('submit', function (event) {
+﻿document.getElementById('submit').addEventListener('submit', function (event) {
     event.preventDefault();
-
-    let amount = parseFloat(document.getElementById('loanAmount').value);
-    let rate = parseFloat(document.getElementById('rate').value) / 100 / 12;
-    let term = parseFloat(document.getElementById('loanTerm').value) * 12;
-
-    let monthlyPayment = (amount * rate) / (1 - Math.pow(1 + rate, -term));
-    document.getElementById('result').innerText = `Monthly Payment: $${monthlyPayment.toFixed(2)}`;
-});
+    // validation checks
+    });
 
 
 // Trigger function

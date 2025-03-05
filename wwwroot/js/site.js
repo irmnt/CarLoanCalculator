@@ -1,6 +1,13 @@
 ﻿document.getElementById('submit').addEventListener('submit', function (event) {
     event.preventDefault();
     // validation checks
+    let planSelected = document.querySelector('input[name="loanPlan"]:checked'); 
+
+    // To do validation checks
+    let plan = planSelected ? planSelected.value : '';
+    document.$ = (id) => document.getElementById(id);
+    let hoge = document.$('hoge');
+    let hoge2 = document.$('hoge2');
     });
 
 

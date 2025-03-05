@@ -4,7 +4,12 @@
     });
 
 
-// Trigger function
+/**
+ * Trigger Function
+ * @param {any} plan : Plan A,B or C
+ * 
+ * Logic: Update all items when any of the input fields are changed
+ */
 function updateAllItems(plan) {
     setInterestRate(plan);
     setInsurancePrice(plan);
@@ -14,8 +19,12 @@ function updateAllItems(plan) {
     totalInterestPaidCalculator(plan);
     totalPaymentAmountCalculator(plan);
 }
-
-// updating total amount
+/**
+ * Total Payment Amount Calculator
+ * @param {any} plan : Plan A,B or C
+ * 
+ * Logic: Total Payment Amount = Subtotal + Taxes + Total Interest Paid
+ */
 function totalPaymentAmountCalculator(plan) {
 
     // Calculate subtotal
@@ -35,7 +44,13 @@ function totalPaymentAmountCalculator(plan) {
 }
 
 
-// calculating subtotal
+/**
+ * Subtotal Payment Calculator
+ * @param {any} plan
+ * @returns Subtotal Payment Amount
+ * 
+ * Logic: Subtotal Payment Amount = Vehicle Price + Insurance Price + Other Fees
+ */
 function subtotalPaymentCalculator(plan) {
 
     // Get the Vehicle Price, Insurance Price and Other Fees
@@ -51,7 +66,12 @@ function subtotalPaymentCalculator(plan) {
 }
 
 
-// updating Taxes
+/**
+ * Taxes Calculator
+ * @param {any} plan : Plan A,B or C
+ * 
+ * Logic: Taxes = Subtotal * Tax Rate
+ */
 function taxesCalculator(plan) {
     let taxRate = parseInt(document.getElementById('taxRatePlan' + plan).value.replace(/[^0-9.]+/g, "")) || 0;
 
@@ -63,8 +83,14 @@ function taxesCalculator(plan) {
 }
 
 
-// updating Total Loan Amount
+/**
+ * Total Loan Amount Calculator
+ * @param {any} plan : Plan A,B or C
+ * 
+ * Logic: Total Loan Amount = Subtotal - Down Payment
+ */
 function totalLoanAmountCalculator(plan) {
+    // Get the Loan Term
     let loanTerm = document.getElementById('loanTermPlan' + plan).value;
 
     if (loanTerm == 'select option') {
@@ -82,8 +108,16 @@ function totalLoanAmountCalculator(plan) {
     }
 }
 
-
-// Setting Insurance Price
+/**
+ * Insurance Price Setter
+ * @param {any} plan : Plan A,B or C
+ * 
+ * Logic:
+ * 1 year = $ 1,000
+ * 3 years = $ 2,000
+ * 5 years = $ 2,500
+ * 10 years = $ 3,000
+ */
 function setInsurancePrice(plan) {
     let insuranceType = document.getElementById('insuranceTypePlan' + plan).value;
     let insurancePrice = insuranceType == 'insurance' + plan + '_1yr' ? '$ 1,000'
@@ -95,7 +129,16 @@ function setInsurancePrice(plan) {
 }
 
 
-// Setting Interest Rate
+/**
+ * Interest Rate Setter
+ * @param {any} plan : Plan A,B or C
+ * 
+ * Logic:
+ * 12 months = 1.5%
+ * 36 months = 2.5%
+ * 60 months = 3.5%
+ * 120 months = 5.0%
+ */
 function setInterestRate(plan) {
     let loanTerm = document.getElementById('loanTermPlan' + plan).value || '';
     let interestRate = loanTerm == 'loanTerm' + plan + '_12m' ? '1.5 %'
@@ -107,7 +150,12 @@ function setInterestRate(plan) {
 }
 
 
-// Calculating Monthly Payment
+/**
+ * Monthly Payment Calculator
+ * @param {any} plan : Plan A,B or C
+ * 
+ * Logic: Monthly Payment = (Total Loan Amount * Monthly Interest Rate * Growth Factor) / (Growth Factor - 1)
+ */
 function monthlyPaymentCalculator(plan) {
     let totalLoanAmount = parseFloat(document.getElementById('totalLoanAmountPlan' + plan).textContent.replace(/[^0-9.-]+/g, "")) || 0;
     let annualInterestRate = parseFloat(document.getElementById('interestRatePlan' + plan).textContent.replace(/[^0-9.]+/g, "")) || 0;
@@ -128,7 +176,13 @@ function monthlyPaymentCalculator(plan) {
     }
 }
 
-// Calculating Total Interest Paid
+
+/**
+ * Total Interest Paid Calculator
+ * @param {any} plan : Plan A,B or C
+ * 
+ * Logic: Total Interest Paid = (Monthly Payment * Loan Term) - Total Loan Amount
+ */
 function totalInterestPaidCalculator(plan) {
     let totalLoanAmount = parseFloat(document.getElementById('totalLoanAmountPlan' + plan).textContent.replace(/[^0-9.-]+/g, "")) || 0;
     let monthlyPayment = parseFloat(document.getElementById('monthlyPaymentPlan' + plan).textContent.replace(/[^0-9.-]+/g, "")) || 0;

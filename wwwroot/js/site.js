@@ -1,7 +1,14 @@
-﻿document.getElementById('submit').addEventListener('submit', function (event) {
+﻿/**
+ * Event Listner
+ * 
+ * Validation Check
+ * Value Check: Price of Vehicle, Down Payment, Tax Rate, Loan Start Date
+ * If Selected: Loan Term, Insurance Type
+ */
+document.getElementById('submit').addEventListener('submit', function (event) {
     event.preventDefault();
     // validation checks
-    let planSelected = document.querySelector('input[name="loanPlan"]:checked'); 
+    let planSelected = document.querySelector('input[name="loanPlan"]:checked');
 
     // To do validation checks
     let plan = planSelected ? planSelected.value : '';

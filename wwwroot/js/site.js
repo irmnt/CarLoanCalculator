@@ -11,11 +11,12 @@ document.getElementById('submit').addEventListener('submit', function (event) {
     let planSelected = document.querySelector('input[name="loanPlan"]:checked');
 
     // To do validation checks
-    let plan = planSelected ? planSelected.value : '';
     document.$ = (id) => document.getElementById(id);
-    let hoge = document.$('hoge');
-    let hoge2 = document.$('hoge2');
-    });
+
+    if (document.$('vehiclePricePlanA').value == '') {
+        // popup / display error message
+    }
+});
 
 
 /**

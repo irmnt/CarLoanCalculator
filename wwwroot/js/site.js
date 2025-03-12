@@ -14,7 +14,7 @@ document.getElementById('submit').addEventListener('submit', function (event) {
     document.$ = (id) => document.getElementById(id);
 
     if (document.$('vehiclePricePlanA').value == '') {
-        // popup / display error message
+        window.location.href = 'Confirmation.html';
     }
 });
 

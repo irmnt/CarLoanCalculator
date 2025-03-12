@@ -2,6 +2,13 @@
 
 namespace CarLoanCalculator
 {
+    public class LoanDetails
+    {
+        public int Id { get; set; }
+        public decimal LoanAmount { get; set; }
+        public decimal InterestRate { get; set; }
+        public int LoanTerm { get; set; }
+    }
     //public partial class YourPage : System.Web.UI.Page
     //{
     //    protected void btnConfirm_Click(object sender, EventArgs e)

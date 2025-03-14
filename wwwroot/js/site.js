@@ -5,17 +5,17 @@
  * Value Check: Price of Vehicle, Down Payment, Tax Rate, Loan Start Date
  * If Selected: Loan Term, Insurance Type
  */
-document.getElementById('submit').addEventListener('submit', function (event) {
-    event.preventDefault();
-    // validation checks
-    let planSelected = document.querySelector('input[name="loanPlan"]:checked');
+document.getElementById('confirmBtn').addEventListener('click', function () {
+    //event.preventDefault();
+    //// validation checks
+    //let planSelected = document.querySelector('input[name="loanPlan"]:checked');
 
-    // To do validation checks
-    document.$ = (id) => document.getElementById(id);
+    //// To do validation checks
+    //document.$ = (id) => document.getElementById(id);
 
-    if (document.$('vehiclePricePlanA').value == '') {
-        window.location.href = 'Confirmation.html';
-    }
+    //if (document.$('vehiclePricePlanA').value == '') {
+    window.location.href = '/Home/Confirmation';
+    //}
 });
 
 

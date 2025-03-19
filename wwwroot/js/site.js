@@ -8,15 +8,17 @@
 function validationCheck() {
     //event.preventDefault();
     // validation checks
-    let planSelected = document.querySelector('input[name="loanPlan"]:checked');
-
-    // To do validation checks
-    document.$ = (id) => document.getElementById(id);
+    let planSelected = document.querySelector('input[name="loanPlan"]:checked').value;
 
     if (!planSelected) {
         alert("Please select a loan plan.");
         return;
-    }
+    } else {
+        alert("your selected plan is" + planSelected);
+    };
+
+    // To do validation checks
+    document.$ = (id) => document.getElementById(id);
 
     // Log the selected plan value to the console
     console.log("Selected plan:", planSelected.value);

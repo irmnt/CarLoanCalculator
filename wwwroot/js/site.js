@@ -10,25 +10,27 @@ function validationCheck() {
     // validation checks
     let planSelected = document.querySelector('input[name="loanPlan"]:checked').value;
 
-    if (!planSelected) {
-        alert("Please select a loan plan.");
-        return;
-    } else {
-        alert("your selected plan is" + planSelected);
-    };
-
-    // To do validation checks
+    // shorthand for document.getElementById
     document.$ = (id) => document.getElementById(id);
 
-    // Log the selected plan value to the console
-    console.log("Selected plan:", planSelected.value);
-
-    // Perform your validation logic here
-    document.$ = (id) => document.getElementById(id);
-
-    if (document.$('vehiclePricePlanA').value == '') {
+    // Validation Check
+    if (
+        document.$('vehiclePricePlan' + planSelected).value == '' ||
+        document.$('downPaymentPlan' + planSelected).value == '' ||
+        document.$('otherFeesPlan' + planSelected).value == '' ||
+        document.$('taxRatePlan' + planSelected).value == '' ||
+        document.$('loanTermPlan' + planSelected).value == '' ||
+        document.$('loanStartDatePlan' + planSelected).value == ''
+        ) {
         alert("Validation failed. Please check your input.");
     } else {
+
+        // In case of not having selected the Insurance Type
+        if (document.$('insuranceTypePlan' + planSelected).value == '') {
+            document.$('insurancePricePlan' + planSelected).value = 0;
+        };
+
+        // Proceeding to Confirmation Page
         window.location.href = '/Home/Confirmation';
     }
 }

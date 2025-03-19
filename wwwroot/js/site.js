@@ -7,18 +7,27 @@
  */
 function validationCheck() {
     //event.preventDefault();
-    //// validation checks
-    //let planSelected = document.querySelector('input[name="loanPlan"]:checked');
+    // validation checks
+    let planSelected = document.querySelector('input[name="loanPlan"]:checked');
 
-    //// To do validation checks
-    //document.$ = (id) => document.getElementById(id);
+    // To do validation checks
+    document.$ = (id) => document.getElementById(id);
 
-    //if (document.$('vehiclePricePlanA').value == '') {
-    if (true) {
-        window.location.href = '/Home/Confirmation';
-    } else {
+    if (!planSelected) {
+        alert("Please select a loan plan.");
+        return;
+    }
+
+    // Log the selected plan value to the console
+    console.log("Selected plan:", planSelected.value);
+
+    // Perform your validation logic here
+    document.$ = (id) => document.getElementById(id);
+
+    if (document.$('vehiclePricePlanA').value == '') {
         alert("Validation failed. Please check your input.");
-
+    } else {
+        window.location.href = '/Home/Confirmation';
     }
 }
 

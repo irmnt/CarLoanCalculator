@@ -16,8 +16,6 @@ function validationCheck() {
     // Validation Check
     if (
         document.$('vehiclePricePlan' + planSelected).value == '' ||
-        document.$('downPaymentPlan' + planSelected).value == '' ||
-        document.$('otherFeesPlan' + planSelected).value == '' ||
         document.$('taxRatePlan' + planSelected).value == '' ||
         document.$('loanTermPlan' + planSelected).value == '' ||
         document.$('loanStartDatePlan' + planSelected).value == ''
@@ -25,7 +23,16 @@ function validationCheck() {
         alert("Validation failed. Please check your input.");
     } else {
 
-        // In case of not having selected the Insurance Type
+        // Modify Other Fees, Down payment, Insurance Type
+        // in case of empty values
+        if (document.$('downPaymentPlan' + planSelected).value == '') {
+            document.$('downPaymentPlan' + planSelected).value = 0;
+        };
+
+        if (document.$('otherFeesPlan' + planSelected).value == '') {
+            document.$('otherFeesPlan' + planSelected).value = 0;
+        };
+
         if (document.$('insuranceTypePlan' + planSelected).value == '') {
             document.$('insurancePricePlan' + planSelected).value = 0;
         };

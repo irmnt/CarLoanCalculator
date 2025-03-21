@@ -1,4 +1,6 @@
-﻿/**
+﻿import { isEmptyObject } from "jquery";
+
+/**
  * Event Listner
  * 
  * Validation Check
@@ -13,14 +15,27 @@ function validationCheck() {
     // shorthand for document.getElementById
     document.$ = (id) => document.getElementById(id);
 
+    const errorMessages = [];
+
     // Validation Check
-    if (
-        document.$('vehiclePricePlan' + planSelected).value == '' ||
-        document.$('taxRatePlan' + planSelected).value == '' ||
-        document.$('loanTermPlan' + planSelected).value == '' ||
-        document.$('loanStartDatePlan' + planSelected).value == ''
-        ) {
-        alert("Validation failed. Please check your input.");
+    if (document.$('vehiclePricePlan' + planSelected).value == '') {
+        errorMessages.push('Enter the Vehicle Price');
+    };
+
+    if (document.$('taxRatePlan' + planSelected).value == '') {
+        errorMessages.push('Enter the Tax Rate');
+    };
+
+    if (document.$('loanTermPlan' + planSelected).value == '') {
+        errorMessages.push('Select the Loan Term');
+    };
+
+    if (document.$('loanStartDatePlan' + planSelected).value == '') {
+        errorMessages.push('Enter the Loan Start Date');
+    };
+
+    if (errorMessages.length > 0) {
+        alert(errorMessages);
     } else {
 
         // Modify Other Fees, Down payment, Insurance Type

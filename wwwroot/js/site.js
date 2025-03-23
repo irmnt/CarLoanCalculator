@@ -1,6 +1,4 @@
-﻿import { isEmptyObject } from "jquery";
-
-/**
+﻿/**
  * Event Listner
  * 
  * Validation Check
@@ -12,7 +10,7 @@ function validationCheck() {
     // validation checks
     let planSelected = document.querySelector('input[name="loanPlan"]:checked').value;
 
-    // shorthand for document.getElementById
+    //shorthand for document.getElementById
     document.$ = (id) => document.getElementById(id);
 
     const errorMessages = [];

@@ -24,13 +24,12 @@ function validationCheck() {
         errorMessages.push('Enter the Tax Rate');
     };
 
-    if (document.$('loanTermPlan' + planSelected).value == '') {
+    if (document.$('loanTermPlan' + planSelected).value == 'select option') {
         errorMessages.push('Select the Loan Term');
     };
 
-    var dateFormat = /^(0[1-9]|1[0-2])\/\d{4}$/;
-    if (!dateFormat.test(document.$('loanStartDatePlan' + planSelected).value)) {
-        errorMessages.push('Enter correct Loan Start Date');
+    if (document.$('loanStartDatePlan' + planSelected).value == '') {
+        errorMessages.push('Enter the Loan Start Date');
     };
 
     if (errorMessages.length > 0) {

@@ -28,12 +28,13 @@ function validationCheck() {
         errorMessages.push('Select the Loan Term');
     };
 
-    if (document.$('loanStartDatePlan' + planSelected).value == '') {
-        errorMessages.push('Enter the Loan Start Date');
+    var dateFormat = /^(0[1-9]|1[0-2])\/\d{4}$/;
+    if (!dateFormat.test(document.$('loanStartDatePlan' + planSelected).value)) {
+        errorMessages.push('Enter correct Loan Start Date');
     };
 
     if (errorMessages.length > 0) {
-        alert(errorMessages);
+        alert(errorMessages.join('\n'));
     } else {
 
         // Modify Other Fees, Down payment, Insurance Type

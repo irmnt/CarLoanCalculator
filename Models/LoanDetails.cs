@@ -1,13 +1,13 @@
-﻿using System;
-
-namespace CarLoanCalculator
+﻿namespace CarLoanCalculator.Services
 {
     public class LoanDetails
     {
-        public class LoanViewModel
+        public decimal CalculateMonthlyPayment(decimal principal, decimal annualInterestRate, int termInMonths)
         {
-            public string Amount { get; set; }
-            public string Term { get; set; }
+            // Implement your calculation logic here
+            decimal monthlyInterestRate = annualInterestRate / 12 / 100;
+            decimal denominator = (decimal)Math.Pow((double)(1 + monthlyInterestRate), termInMonths) - 1;
+            return principal * monthlyInterestRate * (decimal)Math.Pow((double)(1 + monthlyInterestRate), termInMonths) / denominator;
         }
     }
 }

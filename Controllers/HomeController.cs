@@ -1,4 +1,5 @@
 using CarLoanCalculator.Models;
+using CarLoanCalculator.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,10 +8,12 @@ namespace CarLoanCalculator.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly LoanDetails _loanDetails;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, LoanDetails loanDetails)
         {
             _logger = logger;
+            _loanDetails = loanDetails;
         }
 
         public IActionResult Index()
@@ -23,9 +26,23 @@ namespace CarLoanCalculator.Controllers
             return View();
         }
 
-        public IActionResult Confirmation()
+        [HttpPost]
+        public IActionResult Confirm(LoanViewModel model)
         {
-            return View();
+            if (ModelState.IsValid) {
+                // Perform calculations using the service
+                model.MonthlyPayment = _loanDetails.CalculateMonthlyPayment(
+                    decimal.Parse(model.Amount),
+                    model.AnnualInterestRate,
+                    int.Parse(model.Term)
+                );
+                return RedirectToAction("Confirmation", model);
+            }
+            return View("Index", model);
+        }
+            public IActionResult Confirmation(LoanViewModel model)
+        {
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

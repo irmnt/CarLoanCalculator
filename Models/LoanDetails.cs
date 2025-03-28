@@ -1,4 +1,4 @@
-﻿namespace CarLoanCalculator.Services
+﻿namespace CarLoanCalculator.Models
 {
     public class LoanDetails
     {

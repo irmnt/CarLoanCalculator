@@ -1,4 +1,4 @@
-﻿@model CarLoanCalculator.Views.Home.ConfirmationModel
+﻿@model CarLoanCalculator.Models.LoanViewModel
 @{
     ViewData["Title"] = "Confirmation";
 }
@@ -15,7 +15,7 @@
     <p><strong>Loan Term:</strong> 36 months</p>
     <p><strong>Loan Start Date:</strong> mm/yyyy</p>
     <p><strong>Loan End Date:</strong> mm/yyyy</p>
-    <p><strong>Interest Rate:</strong> 15%</p>
+    <p><strong>Interest Rate:</strong>@Model.AnnualInterestRate</p>
     <p><strong>Total Interest Paid:</strong> $ 999,999</p>
     <p><strong>Total Loan Amount:</strong> $ 999,999</p>
     <p><strong>Monthly Payment</strong> $ 999,999</p>

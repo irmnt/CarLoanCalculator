@@ -1,5 +1,4 @@
 using CarLoanCalculator.Models;
-using CarLoanCalculator.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -31,11 +30,6 @@ namespace CarLoanCalculator.Controllers
         {
             if (ModelState.IsValid) {
                 // Perform calculations using the service
-                model.MonthlyPayment = _loanDetails.CalculateMonthlyPayment(
-                    decimal.Parse(model.Amount),
-                    model.AnnualInterestRate,
-                    int.Parse(model.Term)
-                );
                 return RedirectToAction("Confirmation", model);
             }
             return View("Index", model);

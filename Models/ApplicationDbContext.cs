@@ -1,5 +1,4 @@
-﻿using CarLoanCalculator.Services;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace CarLoanCalculator.Models
 {

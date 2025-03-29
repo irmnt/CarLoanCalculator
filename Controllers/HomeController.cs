@@ -29,6 +29,11 @@ namespace CarLoanCalculator.Controllers
         public IActionResult Confirm(LoanViewModel model)
         {
             if (ModelState.IsValid) {
+                // Get selected plan
+                char selectedPlan = model.SelectedPlan;
+
+                // To do - Utilize the selected plan to calculate the monthly payment
+
                 // Perform calculations using the service
                 return RedirectToAction("Confirmation", model);
             }

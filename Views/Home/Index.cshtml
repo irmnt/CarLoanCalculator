@@ -27,22 +27,22 @@
             
             <!-- Price of Vehicle -->
             <div class="form-row">
-                <label for="VehiclePricePlanA" class="label">Price of Vehicle: </label>
-                <input type="text" id="vehiclePricePlanA" placeholder="0" onblur="updateAllItems('A')">
+                <label class="label">Price of Vehicle: </label>
+                <input type="text" for="VehiclePricePlanA" id="vehiclePricePlanA" placeholder="0" onblur="updateAllItems('A')">
             </div>
 
             <!-- Down Payment -->
             <div class="form-row">
-                <label for="DownPaymentPlanA" class="label">Down Payment:</label>
-                <input type="text" id="downPaymentPlanA" placeholder="0" onblur="updateAllItems('A')">
+                <label class="label">Down Payment:</label>
+                <input type="text" for="DownPaymentPlanA" id="downPaymentPlanA" placeholder="0" onblur="updateAllItems('A')">
             </div>
 
             <div class="border-line"></div>
 
             <!-- insurance Type -->
             <div class="form-row">
-                <label for="InsuranceTypePlanA" class="label">Insurance Type:</label>
-                <select name="insuranceTypePlanA" id="insuranceTypePlanA" oninput="updateAllItems('A')">
+                <label class="label">Insurance Type:</label>
+                <select name="insuranceTypePlanA" for="InsuranceTypePlanA" id="insuranceTypePlanA" oninput="updateAllItems('A')">
                     <option value="select option"></option>
                     <option value="insuranceA_1yr">1 year guarantee</option>
                     <option value="insuranceA_3yrs">3 years guarantee</option>
@@ -59,8 +59,8 @@
 
             <!-- Other Fees -->
             <div class="form-row">
-                <label for="OtherFeesPlanA" class="label">Other Fees:</label>
-                $  <input type="text" id="otherFeesPlanA" placeholder="0" onblur="updateAllItems('A')">
+                <label class="label">Other Fees:</label>
+                $  <input type="text" for="OtherFeesPlanA" id="otherFeesPlanA" placeholder="0" onblur="updateAllItems('A')">
             </div>
 
             <!-- Tax Rate -->
@@ -77,8 +77,8 @@
 
             <!-- Loan Term -->
             <div class="form-row">
-                <label for="LoanTermPlanA" class="label">Loan Term:</label>
-                <select name="loanTermPlanA" id="loanTermPlanA" oninput="updateAllItems('A')">
+                <label class="label">Loan Term:</label>
+                <select name="loanTermPlanA" for="LoanTermPlanA" id="loanTermPlanA" oninput="updateAllItems('A')">
                     <option value="select option"></option>
                     <option value="loanTermA_12m">12 months</option>
                     <option value="loanTermA_36m">36 months</option>

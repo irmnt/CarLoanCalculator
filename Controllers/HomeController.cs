@@ -17,22 +17,6 @@ namespace CarLoanCalculator.Controllers
 
         public IActionResult Index()
         {
-            // TEST
-            // result: didn't display
-            var model = new LoanViewModel
-            {
-                InterestRatePlanA = 5.0,
-                VehiclePricePlanA = 20000,
-                DownPaymentPlanA = 2000,
-                InsuranceTypePlanA = "insuranceA_1yr",
-                OtherFeesPlanA = 500,
-                TaxRatePlanA = 15,
-                LoanTermPlanA = "36 months",
-                LoanStartDatePlanA = "01/2023",
-                TotalInterestPaidPlanA = 1500,
-                TotalLoanAmountPlanA = 18000,
-                MonthlyPaymentPlanA = 500
-            };
             return View();
         }
 
@@ -44,20 +28,35 @@ namespace CarLoanCalculator.Controllers
         [HttpPost]
         public IActionResult Confirm(LoanViewModel model)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 // Get selected plan
-                char selectedPlan = model.SelectedPlan;
+                // char selectedPlan = model.SelectedPlan;
 
                 // To do - Utilize the selected plan to calculate the monthly payment
 
+                // Test
+                TempData["VehiclePrice"] = model.VehiclePricePlanA;
                 // Perform calculations using the service
-                return RedirectToAction("Confirmation", model);
+                return RedirectToAction("Confirmation");
             }
             return View("Index", model);
         }
-        
-        public IActionResult Confirmation(LoanViewModel model)
+        public IActionResult Confirmation()
         {
+            // TEST
+            // result: didn't display
+            var model = new LoanViewModel();
+
+            if (TempData.ContainsKey("VehiclePricePlanA"))
+            {
+                model.VehiclePricePlanA = (double)TempData["VehiclePricePlanA"];
+            }
+            else
+            {
+                model.VehiclePricePlanA = 0;
+            }
+
             return View(model);
         }
 

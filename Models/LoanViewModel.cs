@@ -9,7 +9,7 @@
         public double DownPaymentPlanA { get; set; }
         public string InsuranceTypePlanA { get; set; }
         public double OtherFeesPlanA { get; set; }
-        public double TaxRatePlanA { get; set; }
+        public decimal TaxRatePlanA { get; set; }
         public string LoanTermPlanA { get; set; }
         public string LoanStartDatePlanA { get; set; }
         public double InterestRatePlanA { get; set; }

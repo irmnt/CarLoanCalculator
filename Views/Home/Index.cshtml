@@ -1,8 +1,7 @@
-﻿@{
+﻿@model CarLoanCalculator.Models.LoanViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
-@model CarLoanCalculator.Models.LoanViewModel
-
 
 <div class="text-center">
     <h1>Loan Calculator</h1>
@@ -333,6 +332,6 @@
                 </div>
             </div>
         </div>
-        <button type="button" id="confirmBtn" onclick="validationCheck()">Confirm</button>
+        <button type="submit" id="confirmBtn" onclick="validationCheck()">Confirm</button>
     </div>
 </form>

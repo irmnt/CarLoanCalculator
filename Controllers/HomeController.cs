@@ -28,33 +28,26 @@ namespace CarLoanCalculator.Controllers
         [HttpPost]
         public IActionResult Confirm(LoanViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                // Get selected plan
-                // char selectedPlan = model.SelectedPlan;
+            // To do - Utilize the selected plan to calculate the monthly payment
 
-                // To do - Utilize the selected plan to calculate the monthly payment
+            // memo: before storing it in TempData, converting to string
+            TempData["VehiclePricePlanA"] = model.VehiclePricePlanA.ToString();
 
-                // Test
-                TempData["VehiclePrice"] = model.VehiclePricePlanA;
-                // Perform calculations using the service
-                return RedirectToAction("Confirmation");
-            }
-            return View("Index", model);
+            // Perform calculations using the service
+            return RedirectToAction("Confirmation");
         }
         public IActionResult Confirmation()
         {
-            // TEST
-            // result: didn't display
             var model = new LoanViewModel();
 
             if (TempData.ContainsKey("VehiclePricePlanA"))
             {
-                model.VehiclePricePlanA = (double)TempData["VehiclePricePlanA"];
+                // memo: convert the value in accordance with its data type
+                model.VehiclePricePlanA = Convert.ToString(TempData["VehiclePricePlanA"]);
             }
             else
             {
-                model.VehiclePricePlanA = 0;
+                model.VehiclePricePlanA = "0";
             }
 
             return View(model);

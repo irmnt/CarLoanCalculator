@@ -42,7 +42,7 @@
                 <!-- insurance Type -->
                 <div class="form-row">
                     <label class="label">Insurance Type:</label>
-                    <select name="insuranceTypePlanA" for="InsuranceTypePlanA" id="insuranceTypePlanA" oninput="updateAllItems('A')">
+                    <select name="insuranceTypePlanA" asp-for="InsuranceTypePlanA" id="insuranceTypePlanA" oninput="updateAllItems('A')">
                         <option value="select option"></option>
                         <option value="insuranceA_1yr">1 year guarantee</option>
                         <option value="insuranceA_3yrs">3 years guarantee</option>
@@ -60,13 +60,13 @@
                 <!-- Other Fees -->
                 <div class="form-row">
                     <label class="label">Other Fees:</label>
-                    $  <input type="text" for="OtherFeesPlanA" id="otherFeesPlanA" placeholder="0" onblur="updateAllItems('A')">
+                    $  <input type="text" asp-for="OtherFeesPlanA" id="otherFeesPlanA" placeholder="0" onblur="updateAllItems('A')">
                 </div>
 
                 <!-- Tax Rate -->
                 <div class="form-row">
                     <label class="label">Tax Rate:</label>
-                    <input type="text" for="TaxRatePlanA" id="taxRatePlanA" placeholder="0" onblur="updateAllItems('A')">  %
+                    <input type="text" asp-for="TaxRatePlanA" id="taxRatePlanA" placeholder="0" onblur="updateAllItems('A')">  %
                 </div>
 
                 <!-- Taxes -->
@@ -78,7 +78,7 @@
                 <!-- Loan Term -->
                 <div class="form-row">
                     <label class="label">Loan Term:</label>
-                    <select name="loanTermPlanA" for="LoanTermPlanA" id="loanTermPlanA" oninput="updateAllItems('A')">
+                    <select name="loanTermPlanA" asp-for="LoanTermPlanA" id="loanTermPlanA" oninput="updateAllItems('A')">
                         <option value="select option"></option>
                         <option value="loanTermA_12m">12 months</option>
                         <option value="loanTermA_36m">36 months</option>
@@ -90,7 +90,7 @@
                 <!-- Loan Start Date -->
                 <div class="form-row">
                     <label class="label">Loan Start Date:</label>
-                    <input type="text" for="LoanStartDatePlanA" id="loanStartDatePlanA" placeholder="mm/yyyy">
+                    <input type="text" asp-for="LoanStartDatePlanA" id="loanStartDatePlanA" placeholder="mm/yyyy">
                 </div>
 
                 <!-- Interest Rate -->

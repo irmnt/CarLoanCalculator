@@ -31,24 +31,41 @@ namespace CarLoanCalculator.Controllers
             // To do - Utilize the selected plan to calculate the monthly payment
 
             // memo: before storing it in TempData, converting to string
-            TempData["VehiclePricePlanA"] = model.VehiclePricePlanA.ToString();
+            TempData["TotalPaymentAmountPlanA"] = model.TotalPaymentAmountPlanA != null 
+                ? model.TotalPaymentAmountPlanA.ToString() 
+                : "0";
+            //TempData["VehiclePricePlanA"] = model.VehiclePricePlanA.ToString();
+            TempData["DownPaymentPlanA"] = model.DownPaymentPlanA.ToString();
+            TempData["InsuranceTypePlanA"] = model.InsuranceTypePlanA.ToString();
+            TempData["OtherFeesPlanA"] = model.OtherFeesPlanA.ToString();
+            TempData["TaxRatePlanA"] = model.TaxRatePlanA.ToString();
+            TempData["LoanTermPlanA"] = model.LoanTermPlanA.ToString();
+            TempData["LoanStartDatePlanA"] = model.LoanStartDatePlanA.ToString();
+
+            /* TODO: add hidden input tag in index, and uncomment them */
+            //TempData["InterestRatePlanA"] = model.InterestRatePlanA.ToString();
+            //TempData["TotalInterestPaidPlanA"] = model.TotalInterestPaidPlanA.ToString() ?? "0";
+            //TempData["TotalLoanAmountPlanA"] = model.TotalLoanAmountPlanA.ToString() ?? "0";
+            //TempData["MonthlyPaymentPlanA"] = model.MonthlyPaymentPlanA.ToString() ?? "0";
 
             // Perform calculations using the service
             return RedirectToAction("Confirmation");
         }
-        public IActionResult Confirmation()
+        public IActionResult Confirmation(LoanViewModel model)
         {
-            var model = new LoanViewModel();
-
-            if (TempData.ContainsKey("VehiclePricePlanA"))
-            {
-                // memo: convert the value in accordance with its data type
-                model.VehiclePricePlanA = Convert.ToString(TempData["VehiclePricePlanA"]);
-            }
-            else
-            {
-                model.VehiclePricePlanA = "0";
-            }
+            // memo: convert the value in accordance with its data type
+            model.TotalPaymentAmountPlanA = Convert.ToString(TempData["TotalPaymentAmountPlanA"]) ?? "0";
+            model.VehiclePricePlanA = Convert.ToString(TempData["VehiclePricePlanA"]) ?? "0";
+            model.DownPaymentPlanA = Convert.ToString(TempData["DownPaymentPlanA"]) ?? "0";
+            model.InsuranceTypePlanA = Convert.ToString(TempData["InsuranceTypePlanA"]) ?? "No Insurance";
+            model.OtherFeesPlanA = Convert.ToString(TempData["OtherFeesPlanA"]) ?? "0";
+            model.TaxRatePlanA = Convert.ToString(TempData["TaxRatePlanA"]) ?? "0";
+            model.LoanTermPlanA = Convert.ToString(TempData["LoanTermPlanA"]) ?? "No Loan";
+            model.LoanStartDatePlanA = Convert.ToString(TempData["LoanStartDatePlanA"]) ?? "TBD";
+            model.InterestRatePlanA = Convert.ToString(TempData["InterestRatePlanA"]) ?? "0";
+            model.TotalInterestPaidPlanA = Convert.ToString(TempData["TotalInterestPaidPlanA"]) ?? "0";
+            model.TotalLoanAmountPlanA = Convert.ToString(TempData["TotalLoanAmountPlanA"]) ?? "0";
+            model.MonthlyPaymentPlanA = Convert.ToString(TempData["MonthlyPaymentPlanA"]) ?? "0";
 
             return View(model);
         }

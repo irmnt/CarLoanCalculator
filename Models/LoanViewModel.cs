@@ -4,18 +4,18 @@
     {
         // Values of Plan A
         public char SelectedPlan { get; set; }
-        public string TotalPaymentAmountPlanA { get; set; }
-        public string VehiclePricePlanA { get; set; }
-        public string DownPaymentPlanA { get; set; }
-        public string InsuranceTypePlanA { get; set; }
-        public string OtherFeesPlanA { get; set; }
-        public string TaxRatePlanA { get; set; }
-        public string LoanTermPlanA { get; set; }
-        public string LoanStartDatePlanA { get; set; }
-        public string InterestRatePlanA { get; set; }
-        public string TotalInterestPaidPlanA { get; set; }
-        public string TotalLoanAmountPlanA { get; set; }
-        public string MonthlyPaymentPlanA { get; set; }
+        public required string TotalPaymentAmountPlanA { get; set; }
+        public required string VehiclePricePlanA { get; set; }
+        public required string DownPaymentPlanA { get; set; }
+        public required string InsuranceTypePlanA { get; set; }
+        public required string OtherFeesPlanA { get; set; }
+        public required string TaxRatePlanA { get; set; }
+        public required string LoanTermPlanA { get; set; }
+        public required string LoanStartDatePlanA { get; set; }
+        public required string InterestRatePlanA { get; set; }
+        public required string TotalInterestPaidPlanA { get; set; }
+        public required string TotalLoanAmountPlanA { get; set; }
+        public required string MonthlyPaymentPlanA { get; set; }
 
     }
 }

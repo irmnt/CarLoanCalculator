@@ -49,9 +49,56 @@ body {
         background-color: rgba(0, 130, 200, 0.5);
     }
 
-input[type="radio"]:checked + h2 {
-    font-weight: bold;
+/* Hide the default radio button */
+input[type="radio"] {
+    appearance: none; /* Hides the default radio button */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 2px solid slategrey;
+    border-radius: 50%; /* Makes it circular */
+    outline: none;
+    cursor: pointer;
+    background-color: white;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
+
+    /* Add hover effect */
+    input[type="radio"]:hover {
+        box-shadow: 0 0 15px midnightblue;
+    }
+
+    /* Add the checked spot */
+    input[type="radio"]:checked::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 10px; /* Size of the inner circle */
+        height: 10px;
+        background-color: rgba(0, 130, 200, 0.5);
+        border-radius: 50%; /* Makes it circular */
+    }
+
+    /* Add a label for better styling */
+    input[type="radio"] + label {
+        margin-left: 10px;
+        font-weight: normal;
+        cursor: pointer;
+    }
+
+    input[type="radio"] + span {
+        font-size: 25px;
+    }
+
+    /* Bold the label when the radio button is selected */
+    input[type="radio"]:checked + span {
+        font-weight: bold;
+    }
+
 
 .form-row {
     display: flex;
@@ -72,7 +119,7 @@ input[type="radio"]:checked + h2 {
 }
 
 h1 {
-    font-size: 3.5em;
+    font-size: 2.5em;
     line-height: 1.2;
     font-weight: bold;
 }
@@ -92,3 +139,40 @@ select {
     height: 40px;
     flex:1;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    margin-top: 20px; /* Adds space above the button */
+}
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 130, 200, 0.8);
+    border: 2px solid slategrey;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+    /* Hover effect */
+    button:hover {
+        background-color: rgba(0, 130, 200, 1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Active (pressed) effect */
+    button:active {
+        transform: scale(0.95);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Focus effect */
+    button:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(37, 140, 251, 0.5);
+    }

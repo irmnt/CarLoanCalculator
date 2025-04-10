@@ -31,22 +31,13 @@ namespace CarLoanCalculator.Controllers
             // To do - Utilize the selected plan to calculate the monthly payment
 
             // memo: before storing it in TempData, converting to string
-            TempData["TotalPaymentAmountPlanA"] = model.TotalPaymentAmountPlanA != null 
-                ? model.TotalPaymentAmountPlanA.ToString() 
-                : "0";
-            //TempData["VehiclePricePlanA"] = model.VehiclePricePlanA.ToString();
+            TempData["VehiclePricePlanA"] = model.VehiclePricePlanA.ToString();
             TempData["DownPaymentPlanA"] = model.DownPaymentPlanA.ToString();
             TempData["InsuranceTypePlanA"] = model.InsuranceTypePlanA.ToString();
             TempData["OtherFeesPlanA"] = model.OtherFeesPlanA.ToString();
             TempData["TaxRatePlanA"] = model.TaxRatePlanA.ToString();
             TempData["LoanTermPlanA"] = model.LoanTermPlanA.ToString();
             TempData["LoanStartDatePlanA"] = model.LoanStartDatePlanA.ToString();
-
-            /* TODO: add hidden input tag in index, and uncomment them */
-            //TempData["InterestRatePlanA"] = model.InterestRatePlanA.ToString();
-            //TempData["TotalInterestPaidPlanA"] = model.TotalInterestPaidPlanA.ToString() ?? "0";
-            //TempData["TotalLoanAmountPlanA"] = model.TotalLoanAmountPlanA.ToString() ?? "0";
-            //TempData["MonthlyPaymentPlanA"] = model.MonthlyPaymentPlanA.ToString() ?? "0";
 
             // Perform calculations using the service
             return RedirectToAction("Confirmation");

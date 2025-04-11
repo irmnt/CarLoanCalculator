@@ -1,5 +1,6 @@
 using CarLoanCalculator.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace CarLoanCalculator.Controllers
 {
@@ -40,7 +41,8 @@ namespace CarLoanCalculator.Controllers
 
 
             // Call the static method to calculate the total payment
-            //decimal totalPayment = LoanCalculator.CalculateTotalPayment(10000, 8, 36);
+            decimal totalPayment = LoanDetails.CalculateTotalPayment(10000, 8, 36);
+            TempData["TotalPaymentAmountPlanA"] = totalPayment.ToString("F2");
 
             // Perform calculations using the service
             return RedirectToAction("Confirmation");

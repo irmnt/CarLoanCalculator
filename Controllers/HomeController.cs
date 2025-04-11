@@ -1,6 +1,5 @@
 using CarLoanCalculator.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace CarLoanCalculator.Controllers
 {
@@ -38,6 +37,10 @@ namespace CarLoanCalculator.Controllers
             TempData["TaxRatePlanA"] = model.TaxRatePlanA.ToString();
             TempData["LoanTermPlanA"] = model.LoanTermPlanA.ToString();
             TempData["LoanStartDatePlanA"] = model.LoanStartDatePlanA.ToString();
+
+
+            // Call the static method to calculate the total payment
+            //decimal totalPayment = LoanCalculator.CalculateTotalPayment(10000, 8, 36);
 
             // Perform calculations using the service
             return RedirectToAction("Confirmation");

@@ -32,7 +32,7 @@ namespace CarLoanCalculator.Controllers
 
             var vehivlePrice = model.VehiclePricePlanA.ToString();
             var downPayment = model.DownPaymentPlanA.ToString();
-            var insurancePrice = "0";
+            var insurancePrice = LoanDetails.SetInsurancePrice(model.InsuranceTypePlanA.ToString());
             var otherFees = model.OtherFeesPlanA.ToString();
             var taxRate = model.TaxRatePlanA.ToString();
             var taxes = "0";

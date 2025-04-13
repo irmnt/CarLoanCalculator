@@ -14,5 +14,29 @@
             decimal monthlyPayment = CalculateMonthlyPayment(principal, annualInterestRate, termInMonths);
             return monthlyPayment * termInMonths;
         }
+
+        public static string SetInsurancePrice(string insuranceType)
+        {
+            if (insuranceType == "insuranceA_1yr")
+            {
+                return "1000";
+            }
+            else if (insuranceType == "insuranceA_3yr")
+            {
+                return "2000";
+            }
+            else if (insuranceType == "insuranceA_5yr")
+            {
+                return "2500";
+            }
+            else if (insuranceType == "insuranceA_10yr")
+            {
+                return "3000";
+            }
+            else
+            {
+                return "0";
+            }
+        }
     }
 }

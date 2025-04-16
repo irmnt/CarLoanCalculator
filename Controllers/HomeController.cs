@@ -30,28 +30,30 @@ namespace CarLoanCalculator.Controllers
         {
             // To do - Utilize the selected plan to calculate the monthly payment
 
-            var vehivlePrice = model.VehiclePricePlanA.ToString();
+            var vehivlePrice = decimal.Parse(model.VehiclePricePlanA);
             var downPayment = model.DownPaymentPlanA.ToString();
-            var insurancePrice = LoanDetails.SetInsurancePrice(model.InsuranceTypePlanA.ToString());
-            var otherFees = model.OtherFeesPlanA.ToString();
+            var insurancePrice = decimal.Parse(LoanDetails.SetInsurancePrice(model.InsuranceTypePlanA.ToString()));
+            var otherFees = decimal.Parse(model.OtherFeesPlanA.ToString());
             var taxRate = model.TaxRatePlanA.ToString();
-            var taxes = "0";
-            var totalInterestPaid = "0";
+            var interestRate = LoanDetails.SetInterestRate(model.LoanTermPlanA.ToString());
+            var totalInterestPaid = 0;
+            var taxes = LoanDetails.CalculateTaxes(vehivlePrice, insurancePrice, otherFees, totalInterestPaid, decimal.Parse(taxRate));
             var totalLoanAmount = "0";
             var monthlyPayment = "0";
 
             // memo: before storing it in TempData, converting to string
-            TempData["VehiclePricePlanA"] = vehivlePrice;
+            TempData["VehiclePricePlanA"] = vehivlePrice.ToString();
             TempData["DownPaymentPlanA"] = downPayment;
             TempData["InsuranceTypePlanA"] = model.InsuranceTypePlanA.ToString();
-            TempData["OtherFeesPlanA"] = otherFees;
+            TempData["OtherFeesPlanA"] = otherFees.ToString();
             TempData["TaxRatePlanA"] = model.TaxRatePlanA.ToString();
+            TempData["InterestRatePlanA"] = interestRate;
             TempData["LoanTermPlanA"] = model.LoanTermPlanA.ToString();
             TempData["LoanStartDatePlanA"] = model.LoanStartDatePlanA.ToString();
 
 
             // Call the static method to calculate the total payment
-            decimal totalPayment = LoanDetails.CalculateTotalPayment(10000, 8, 36);
+            decimal totalPayment = LoanDetails.CalculateTotalPayment(vehivlePrice, insurancePrice, otherFees, taxes, totalInterestPaid);
             TempData["TotalPaymentAmountPlanA"] = totalPayment.ToString("F2");
 
             // Perform calculations using the service

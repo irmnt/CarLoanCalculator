@@ -1,18 +1,18 @@
-﻿namespace CarLoanCalculator.Models
+﻿using System.Numerics;
+
+namespace CarLoanCalculator.Models
 {
     public class LoanDetails
     {
         public static decimal CalculateMonthlyPayment(decimal principal, decimal annualInterestRate, int termInMonths)
         {
             // Implement your calculation logic here
-            decimal monthlyInterestRate = annualInterestRate / 12 / 100;
-            decimal denominator = (decimal)Math.Pow((double)(1 + monthlyInterestRate), termInMonths) - 1;
-            return principal * monthlyInterestRate * (decimal)Math.Pow((double)(1 + monthlyInterestRate), termInMonths) / denominator;
+            return 1500;
         }
-        public static decimal CalculateTotalPayment(decimal principal, decimal annualInterestRate, int termInMonths)
+        public static decimal CalculateTotalPayment(decimal vehivlePrice, decimal insurancePrice, decimal otherFees, decimal taxes, decimal totalInterestPaid)
         {
-            decimal monthlyPayment = CalculateMonthlyPayment(principal, annualInterestRate, termInMonths);
-            return monthlyPayment * termInMonths;
+            var totalPayment = vehivlePrice + insurancePrice + otherFees + taxes + totalInterestPaid;
+            return totalPayment;
         }
 
         public static string SetInsurancePrice(string insuranceType)
@@ -37,6 +37,22 @@
             {
                 return "0";
             }
+        }
+
+        public static decimal CalculateTaxes(decimal vehivlePrice, decimal insurancePrice, decimal otherFees, decimal totalInterestPaid, decimal taxRate)
+        {
+            var subTotal = vehivlePrice + insurancePrice + otherFees + totalInterestPaid;
+            return subTotal * (taxRate/100);
+        }
+
+        public static string SetInterestRate(string loanTerm)
+        {
+            var interestRate = loanTerm == "loanTermA_12m" ? "1.5 %"
+        : loanTerm == "loanTermA_36m" ? "2.5 %"
+            : loanTerm == "loanTermA_60m" ? "3.5 %"
+                : loanTerm == "loanTermA_120m" ? "5.0 %" : "0 %";
+
+            return interestRate;
         }
     }
 }

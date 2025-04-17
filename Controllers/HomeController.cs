@@ -31,14 +31,14 @@ namespace CarLoanCalculator.Controllers
             // To do - Utilize the selected plan to calculate the monthly payment
 
             var vehivlePrice = decimal.Parse(model.VehiclePricePlanA);
-            var downPayment = model.DownPaymentPlanA.ToString();
+            var downPayment = decimal.Parse(model.DownPaymentPlanA.ToString());
             var insurancePrice = decimal.Parse(LoanDetails.SetInsurancePrice(model.InsuranceTypePlanA.ToString()));
             var otherFees = decimal.Parse(model.OtherFeesPlanA.ToString());
             var taxRate = model.TaxRatePlanA.ToString();
             var interestRate = LoanDetails.SetInterestRate(model.LoanTermPlanA.ToString());
             var totalInterestPaid = 0;
             var taxes = LoanDetails.CalculateTaxes(vehivlePrice, insurancePrice, otherFees, totalInterestPaid, decimal.Parse(taxRate));
-            var totalLoanAmount = "0";
+            var totalLoanAmount = LoanDetails.CalculateTotalLoanAmount(vehivlePrice, downPayment, insurancePrice, otherFees, totalInterestPaid, taxes);
             var monthlyPayment = "0";
 
             // memo: before storing it in TempData, converting to string

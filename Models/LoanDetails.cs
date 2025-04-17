@@ -54,5 +54,30 @@ namespace CarLoanCalculator.Models
 
             return interestRate;
         }
+
+        public static decimal CalculateTotalLoanAmount(
+            decimal vehivlePrice,
+            decimal downPayment,
+            decimal insurancePrice,
+            decimal otherFees,
+            decimal taxes,
+            decimal totalInterestPaid
+            )
+        {
+            var totalLoanAmount = vehivlePrice + insurancePrice + otherFees + taxes + totalInterestPaid - downPayment;
+            return totalLoanAmount;
+        }
+
+        public static decimal CalcurateMonthlyPayment(
+            decimal totalLoanAmount,
+            decimal interestRate,
+            int loanTerm
+            )
+        {
+            decimal monthlyInterestRate = interestRate / 100 / 12;
+            var growthFactor = Math.Pow((double)(1 + monthlyInterestRate), loanTerm);
+            var monthlyPayment = ((double)totalLoanAmount * (double)monthlyInterestRate * growthFactor) / (growthFactor - 1);
+            return (decimal)monthlyPayment;
+        }
     }
 }

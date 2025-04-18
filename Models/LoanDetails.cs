@@ -42,17 +42,16 @@ namespace CarLoanCalculator.Models
         public static decimal CalculateTaxes(decimal vehivlePrice, decimal insurancePrice, decimal otherFees, decimal totalInterestPaid, decimal taxRate)
         {
             var subTotal = vehivlePrice + insurancePrice + otherFees + totalInterestPaid;
-            return subTotal * (taxRate/100);
+            return subTotal * (taxRate / 100);
         }
 
-        public static string SetInterestRate(string loanTerm)
+        public static string ConvertInterestRate(string loanTerm)
         {
-            var interestRate = loanTerm == "loanTermA_12m" ? "1.5 %"
-        : loanTerm == "loanTermA_36m" ? "2.5 %"
-            : loanTerm == "loanTermA_60m" ? "3.5 %"
-                : loanTerm == "loanTermA_120m" ? "5.0 %" : "0 %";
-
-            return interestRate;
+            return loanTerm == "loanTermA_12m" ? "1.5 %"
+                : loanTerm == "loanTermA_36m" ? "2.5 %" 
+                : loanTerm == "loanTermA_60m" ? "3.5 %"
+                : loanTerm == "loanTermA_120m" ? "5.0 %" 
+                : "0 %";
         }
 
         public static decimal CalculateTotalLoanAmount(
@@ -69,15 +68,30 @@ namespace CarLoanCalculator.Models
         }
 
         public static decimal CalcurateMonthlyPayment(
-            decimal totalLoanAmount,
+            decimal vehivlePrice, 
+            decimal downPayment, 
+            decimal insurancePrice, 
+            decimal otherFees,
             decimal interestRate,
             int loanTerm
             )
         {
+            decimal totalLoanAmount = vehivlePrice + insurancePrice + otherFees - downPayment;
             decimal monthlyInterestRate = interestRate / 100 / 12;
-            var growthFactor = Math.Pow((double)(1 + monthlyInterestRate), loanTerm);
-            var monthlyPayment = ((double)totalLoanAmount * (double)monthlyInterestRate * growthFactor) / (growthFactor - 1);
+            double growthFactorDouble = Math.Pow((double)(1 + monthlyInterestRate), loanTerm);
+            decimal growthFactor = Math.Round((decimal)growthFactorDouble, 10); // safe rounding
+            var monthlyPayment = (totalLoanAmount * monthlyInterestRate * growthFactor) / (growthFactor - 1);
+
             return (decimal)monthlyPayment;
+        }
+
+        public static int ConvertLoanTermToInt(string loanTermStr)
+        {
+            return loanTermStr == "loanTermA_12m" ? 12
+                : loanTermStr == "loanTermA_36m" ? 36
+                : loanTermStr == "loanTermA_60m" ? 60
+                : loanTermStr == "loanTermA_120m" ? 120
+                : 0;
         }
     }
 }

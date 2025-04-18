@@ -1,6 +1,8 @@
 using CarLoanCalculator.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CarLoanCalculator.Controllers
 {
@@ -35,15 +37,18 @@ namespace CarLoanCalculator.Controllers
             var insurancePrice = decimal.Parse(LoanDetails.SetInsurancePrice(model.InsuranceTypePlanA.ToString()));
             var otherFees = decimal.Parse(model.OtherFeesPlanA.ToString());
             var taxRate = model.TaxRatePlanA.ToString();
-            var interestRate = LoanDetails.SetInterestRate(model.LoanTermPlanA.ToString());
+            var interestRate = int.Parse(LoanDetails.ConvertInterestRate(model.LoanTermPlanA.ToString()).Replace("%", "").Trim());
+            // Review the equasions
+            var loanTerm = LoanDetails.ConvertLoanTermToInt(model.LoanTermPlanA.ToString());
+            var monthlyPayment = LoanDetails.CalcurateMonthlyPayment(vehivlePrice, downPayment, insurancePrice, otherFees, 12, loanTerm);
             var totalInterestPaid = 0;
             var taxes = LoanDetails.CalculateTaxes(vehivlePrice, insurancePrice, otherFees, totalInterestPaid, decimal.Parse(taxRate));
             var totalLoanAmount = LoanDetails.CalculateTotalLoanAmount(vehivlePrice, downPayment, insurancePrice, otherFees, totalInterestPaid, taxes);
-            var monthlyPayment = "0";
+
 
             // memo: before storing it in TempData, converting to string
             TempData["VehiclePricePlanA"] = vehivlePrice.ToString();
-            TempData["DownPaymentPlanA"] = downPayment;
+            TempData["DownPaymentPlanA"] = downPayment.ToString();
             TempData["InsuranceTypePlanA"] = model.InsuranceTypePlanA.ToString();
             TempData["OtherFeesPlanA"] = otherFees.ToString();
             TempData["TaxRatePlanA"] = model.TaxRatePlanA.ToString();

@@ -8,8 +8,10 @@
         public required string VehiclePricePlanA { get; set; }
         public required string DownPaymentPlanA { get; set; }
         public required string InsuranceTypePlanA { get; set; }
+        public required string InsurancePricePlanA { get; set; }
         public required string OtherFeesPlanA { get; set; }
         public required string TaxRatePlanA { get; set; }
+        public required string TaxesPlanA { get; set; }
         public required string LoanTermPlanA { get; set; }
         public required string LoanStartDatePlanA { get; set; }
         public required string InterestRatePlanA { get; set; }

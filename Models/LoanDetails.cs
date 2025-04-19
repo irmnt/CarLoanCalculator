@@ -21,15 +21,15 @@ namespace CarLoanCalculator.Models
             {
                 return "1000";
             }
-            else if (insuranceType == "insuranceA_3yr")
+            else if (insuranceType == "insuranceA_3yrs")
             {
                 return "2000";
             }
-            else if (insuranceType == "insuranceA_5yr")
+            else if (insuranceType == "insuranceA_5yrs")
             {
                 return "2500";
             }
-            else if (insuranceType == "insuranceA_10yr")
+            else if (insuranceType == "insuranceA_10yrs")
             {
                 return "3000";
             }
@@ -39,18 +39,18 @@ namespace CarLoanCalculator.Models
             }
         }
 
-        public static decimal CalculateTaxes(decimal vehivlePrice, decimal insurancePrice, decimal otherFees, decimal totalInterestPaid, decimal taxRate)
+        public static decimal CalculateTaxes(decimal vehivlePrice, decimal insurancePrice, decimal otherFees, decimal taxRate)
         {
-            var subTotal = vehivlePrice + insurancePrice + otherFees + totalInterestPaid;
+            var subTotal = vehivlePrice + insurancePrice + otherFees;
             return subTotal * (taxRate / 100);
         }
 
         public static string ConvertInterestRate(string loanTerm)
         {
             return loanTerm == "loanTermA_12m" ? "1.5 %"
-                : loanTerm == "loanTermA_36m" ? "2.5 %" 
+                : loanTerm == "loanTermA_36m" ? "2.5 %"
                 : loanTerm == "loanTermA_60m" ? "3.5 %"
-                : loanTerm == "loanTermA_120m" ? "5.0 %" 
+                : loanTerm == "loanTermA_120m" ? "5.0 %"
                 : "0 %";
         }
 
@@ -59,19 +59,19 @@ namespace CarLoanCalculator.Models
             decimal downPayment,
             decimal insurancePrice,
             decimal otherFees,
-            decimal taxes,
-            decimal totalInterestPaid
+            decimal taxes
             )
         {
-            var totalLoanAmount = vehivlePrice + insurancePrice + otherFees + taxes + totalInterestPaid - downPayment;
+            var totalLoanAmount = vehivlePrice + insurancePrice + otherFees + taxes - downPayment;
             return totalLoanAmount;
         }
 
         public static decimal CalcurateMonthlyPayment(
-            decimal vehivlePrice, 
-            decimal downPayment, 
-            decimal insurancePrice, 
+            decimal vehivlePrice,
+            decimal downPayment,
+            decimal insurancePrice,
             decimal otherFees,
+            decimal taxes,
             decimal interestRate,
             int loanTerm
             )
@@ -92,6 +92,16 @@ namespace CarLoanCalculator.Models
                 : loanTermStr == "loanTermA_60m" ? 60
                 : loanTermStr == "loanTermA_120m" ? 120
                 : 0;
+        }
+
+        public static decimal GetInterestPaid(decimal monthlyPayment,
+            decimal totalLoanAmount,
+            int loanTerm
+            )
+        {
+            var totalPayment = monthlyPayment * loanTerm;
+            var interestPaid = totalPayment - totalLoanAmount;
+            return interestPaid;
         }
     }
 }

@@ -138,7 +138,7 @@ function taxesCalculator(plan) {
  * Total Loan Amount Calculator
  * @param {any} plan : Plan A,B or C
  * 
- * Logic: Total Loan Amount = Subtotal - Down Payment
+ * Logic: Total Loan Amount = Subtotal + Taxes - Down Payment
  */
 function totalLoanAmountCalculator(plan) {
     // Get the Loan Term
@@ -150,10 +150,11 @@ function totalLoanAmountCalculator(plan) {
     } else {
         let subtotal = subtotalPaymentCalculator(plan);
 
+        let taxes = parseFloat(document.getElementById('taxesPlan' + plan).textContent.replace(/[^0-9.-]+/g, "")) || 0;
         let downPayment = parseFloat(document.getElementById('downPaymentPlan' + plan).value.replace(/[^0-9.]+/g, "")) || 0;
 
         // Calculate Total Loan Amount and format to currency
-        let loanAmount = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(subtotal - downPayment);
+        let loanAmount = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(subtotal + taxes - downPayment);
 
         document.getElementById('totalLoanAmountPlan' + plan).textContent = loanAmount;
     }

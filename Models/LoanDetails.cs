@@ -4,48 +4,38 @@ namespace CarLoanCalculator.Models
 {
     public class LoanDetails
     {
-        public static decimal CalculateMonthlyPayment(decimal principal, decimal annualInterestRate, int termInMonths)
-        {
-            // Implement your calculation logic here
-            return 1500;
-        }
-        public static decimal CalculateTotalPayment(decimal vehivlePrice, decimal insurancePrice, decimal otherFees, decimal taxes, decimal totalInterestPaid)
+        /** Calcurate Total Payment */
+        public static decimal CalculateTotalPayment(
+            decimal vehivlePrice,
+            decimal insurancePrice,
+            decimal otherFees,
+            decimal taxes,
+            decimal totalInterestPaid
+            )
         {
             var totalPayment = vehivlePrice + insurancePrice + otherFees + taxes + totalInterestPaid;
             return totalPayment;
         }
 
-        public static string SetInsurancePrice(string insuranceType)
+        /**  Get Insurance Price */
+        public static string GetInsurancePrice(string insuranceType)
         {
-            if (insuranceType == "insuranceA_1yr")
-            {
-                return "1000";
-            }
-            else if (insuranceType == "insuranceA_3yrs")
-            {
-                return "2000";
-            }
-            else if (insuranceType == "insuranceA_5yrs")
-            {
-                return "2500";
-            }
-            else if (insuranceType == "insuranceA_10yrs")
-            {
-                return "3000";
-            }
-            else
-            {
-                return "0";
-            }
+            return insuranceType == "insuranceA_1yr" ? "1000"
+                : insuranceType == "insuranceA_3yrs" ? "2000"
+                : insuranceType == "insuranceA_5yrs" ? "2500"
+                : insuranceType == "insuranceA_10yrs" ? "3000" 
+                : "0";
         }
 
+        /** Calcurat Taxes */
         public static decimal CalculateTaxes(decimal vehivlePrice, decimal insurancePrice, decimal otherFees, decimal taxRate)
         {
             var subTotal = vehivlePrice + insurancePrice + otherFees;
             return subTotal * (taxRate / 100);
         }
 
-        public static string ConvertInterestRate(string loanTerm)
+        /** Get Interest Rate */
+        public static string GetInterestRate(string loanTerm)
         {
             return loanTerm == "loanTermA_12m" ? "1.5 %"
                 : loanTerm == "loanTermA_36m" ? "2.5 %"
@@ -54,6 +44,7 @@ namespace CarLoanCalculator.Models
                 : "0 %";
         }
 
+        /** Calculate Total Loan Amount*/
         public static decimal CalculateTotalLoanAmount(
             decimal vehivlePrice,
             decimal downPayment,
@@ -66,6 +57,7 @@ namespace CarLoanCalculator.Models
             return totalLoanAmount;
         }
 
+        /** Calculate Monthly Payment Amount */
         public static decimal CalcurateMonthlyPayment(
             decimal vehivlePrice,
             decimal downPayment,
@@ -76,6 +68,7 @@ namespace CarLoanCalculator.Models
             int loanTerm
             )
         {
+            // To do - Fix the calculation logic
             decimal totalLoanAmount = vehivlePrice + insurancePrice + otherFees - downPayment;
             decimal monthlyInterestRate = interestRate / 100 / 12;
             double growthFactorDouble = Math.Pow((double)(1 + monthlyInterestRate), loanTerm);
@@ -85,7 +78,8 @@ namespace CarLoanCalculator.Models
             return (decimal)monthlyPayment;
         }
 
-        public static int ConvertLoanTermToInt(string loanTermStr)
+        /** Get Loan Term Number */
+        public static int GetLoanTermToInt(string loanTermStr)
         {
             return loanTermStr == "loanTermA_12m" ? 12
                 : loanTermStr == "loanTermA_36m" ? 36
@@ -94,6 +88,7 @@ namespace CarLoanCalculator.Models
                 : 0;
         }
 
+        /** Get Interest Paid Amount */
         public static decimal GetInterestPaid(decimal monthlyPayment,
             decimal totalLoanAmount,
             int loanTerm

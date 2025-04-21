@@ -34,13 +34,13 @@ namespace CarLoanCalculator.Controllers
 
             decimal vehivlePrice = decimal.Parse(model.VehiclePricePlanA);
             decimal downPayment = decimal.Parse(model.DownPaymentPlanA.ToString());
-            decimal insurancePrice = decimal.Parse(LoanDetails.SetInsurancePrice(model.InsuranceTypePlanA.ToString()));
+            decimal insurancePrice = decimal.Parse(LoanDetails.GetInsurancePrice(model.InsuranceTypePlanA.ToString()));
             decimal otherFees = decimal.Parse(model.OtherFeesPlanA.ToString());
             var taxRate = model.TaxRatePlanA.ToString();
-            decimal interestRate = decimal.Parse(LoanDetails.ConvertInterestRate(model.LoanTermPlanA.ToString()).Replace("%", "").Trim());
+            decimal interestRate = decimal.Parse(LoanDetails.GetInterestRate(model.LoanTermPlanA.ToString()).Replace("%", "").Trim());
             decimal taxes = LoanDetails.CalculateTaxes(vehivlePrice, insurancePrice, otherFees, decimal.Parse(taxRate));
             // To do - get the int value form loanTerm
-            var loanTerm = LoanDetails.ConvertLoanTermToInt(model.LoanTermPlanA.ToString());
+            var loanTerm = LoanDetails.GetLoanTermToInt(model.LoanTermPlanA.ToString());
             decimal totalLoanAmount = LoanDetails.CalculateTotalLoanAmount(vehivlePrice, downPayment, insurancePrice, otherFees, taxes);
             decimal monthlyPayment = LoanDetails.CalcurateMonthlyPayment(vehivlePrice, downPayment, insurancePrice, otherFees, taxes, 12, loanTerm);
             decimal totalInterestPaid = LoanDetails.GetInterestPaid(monthlyPayment, totalLoanAmount, loanTerm);

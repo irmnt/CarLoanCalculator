@@ -39,10 +39,9 @@ namespace CarLoanCalculator.Controllers
             var taxRate = model.TaxRatePlanA.ToString();
             decimal interestRate = decimal.Parse(LoanDetails.GetInterestRate(model.LoanTermPlanA.ToString()).Replace("%", "").Trim());
             decimal taxes = LoanDetails.CalculateTaxes(vehivlePrice, insurancePrice, otherFees, decimal.Parse(taxRate));
-            // To do - get the int value form loanTerm
             var loanTerm = LoanDetails.GetLoanTermToInt(model.LoanTermPlanA.ToString());
             decimal totalLoanAmount = LoanDetails.CalculateTotalLoanAmount(vehivlePrice, downPayment, insurancePrice, otherFees, taxes);
-            decimal monthlyPayment = LoanDetails.CalcurateMonthlyPayment(vehivlePrice, downPayment, insurancePrice, otherFees, taxes, interestRate, 60);
+            decimal monthlyPayment = LoanDetails.CalcurateMonthlyPayment(vehivlePrice, downPayment, insurancePrice, otherFees, taxes, interestRate, loanTerm);
             decimal totalInterestPaid = LoanDetails.GetInterestPaid(monthlyPayment, totalLoanAmount, loanTerm);
             decimal totalPayment = LoanDetails.CalculateTotalPayment(vehivlePrice, insurancePrice, otherFees, taxes, totalInterestPaid);
 

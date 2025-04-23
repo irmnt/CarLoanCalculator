@@ -69,7 +69,7 @@ namespace CarLoanCalculator.Models
             )
         {
             // To do - Fix the calculation logic
-            decimal totalLoanAmount = vehivlePrice + insurancePrice + otherFees - downPayment;
+            decimal totalLoanAmount = vehivlePrice + insurancePrice + otherFees + taxes - downPayment;
             decimal monthlyInterestRate = interestRate / 100 / 12;
             double growthFactorDouble = Math.Pow((double)(1 + monthlyInterestRate), loanTerm);
             decimal growthFactor = Math.Round((decimal)growthFactorDouble, 10); // safe rounding

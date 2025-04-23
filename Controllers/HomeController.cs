@@ -42,7 +42,7 @@ namespace CarLoanCalculator.Controllers
             // To do - get the int value form loanTerm
             var loanTerm = LoanDetails.GetLoanTermToInt(model.LoanTermPlanA.ToString());
             decimal totalLoanAmount = LoanDetails.CalculateTotalLoanAmount(vehivlePrice, downPayment, insurancePrice, otherFees, taxes);
-            decimal monthlyPayment = LoanDetails.CalcurateMonthlyPayment(vehivlePrice, downPayment, insurancePrice, otherFees, taxes, 12, loanTerm);
+            decimal monthlyPayment = LoanDetails.CalcurateMonthlyPayment(vehivlePrice, downPayment, insurancePrice, otherFees, taxes, interestRate, 60);
             decimal totalInterestPaid = LoanDetails.GetInterestPaid(monthlyPayment, totalLoanAmount, loanTerm);
             decimal totalPayment = LoanDetails.CalculateTotalPayment(vehivlePrice, insurancePrice, otherFees, taxes, totalInterestPaid);
 

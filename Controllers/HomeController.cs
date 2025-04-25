@@ -1,8 +1,6 @@
 using CarLoanCalculator.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CarLoanCalculator.Controllers
 {
@@ -47,20 +45,20 @@ namespace CarLoanCalculator.Controllers
 
 
             // memo: before storing it in TempData, converting to string
-            TempData["VehiclePricePlanA"] = vehivlePrice.ToString("F2");
-            TempData["DownPaymentPlanA"] = downPayment.ToString("F2");
-            TempData["InsuranceTypePlanA"] = model.InsuranceTypePlanA.ToString();
-            TempData["InsurancePricePlanA"] = insurancePrice.ToString();
-            TempData["OtherFeesPlanA"] = otherFees.ToString("F2");
-            TempData["TaxRatePlanA"] = model.TaxRatePlanA.ToString();
-            TempData["InterestRatePlanA"] = interestRate.ToString();
-            TempData["TaxesPlanA"] = taxes.ToString("F2");
-            TempData["LoanTermPlanA"] = model.LoanTermPlanA.ToString();
-            TempData["LoanStartDatePlanA"] = model.LoanStartDatePlanA.ToString();
-            TempData["TotalLoanAmountPlanA"] = totalLoanAmount.ToString("F2");
-            TempData["MonthlyPaymentPlanA"] = monthlyPayment.ToString("F2");
-            TempData["TotalInterestPaidPlanA"] = totalInterestPaid.ToString("F2");
-            TempData["TotalPaymentAmountPlanA"] = totalPayment.ToString("F2");
+            TempData["VehiclePrice"] = vehivlePrice.ToString("F2");
+            TempData["DownPayment"] = downPayment.ToString("F2");
+            TempData["InsuranceType"] = model.InsuranceTypePlanA.ToString();
+            TempData["InsurancePrice"] = insurancePrice.ToString();
+            TempData["OtherFees"] = otherFees.ToString("F2");
+            TempData["TaxRate"] = model.TaxRatePlanA.ToString();
+            TempData["InterestRate"] = interestRate.ToString();
+            TempData["Taxes"] = taxes.ToString("F2");
+            TempData["LoanTerm"] = model.LoanTermPlanA.ToString();
+            TempData["LoanStartDate"] = model.LoanStartDatePlanA.ToString();
+            TempData["TotalLoanAmount"] = totalLoanAmount.ToString("F2");
+            TempData["MonthlyPayment"] = monthlyPayment.ToString("F2");
+            TempData["TotalInterestPaid"] = totalInterestPaid.ToString("F2");
+            TempData["TotalPaymentAmount"] = totalPayment.ToString("F2");
 
             // Perform calculations using the service
             return RedirectToAction("Confirmation");
@@ -68,20 +66,20 @@ namespace CarLoanCalculator.Controllers
         public IActionResult Confirmation(LoanViewModel model)
         {
             // memo: convert the value in accordance with its data type
-            model.TotalPaymentAmountPlanA = Convert.ToString(TempData["TotalPaymentAmountPlanA"]) ?? "0";
-            model.VehiclePricePlanA = Convert.ToString(TempData["VehiclePricePlanA"]) ?? "0";
-            model.DownPaymentPlanA = Convert.ToString(TempData["DownPaymentPlanA"]) ?? "0";
-            model.InsuranceTypePlanA = Convert.ToString(TempData["InsuranceTypePlanA"]) ?? "No Insurance";
-            model.InsurancePricePlanA = Convert.ToString(TempData["INsurancePricePlanA"]) ?? "0";
-            model.OtherFeesPlanA = Convert.ToString(TempData["OtherFeesPlanA"]) ?? "0";
-            model.TaxRatePlanA = Convert.ToString(TempData["TaxRatePlanA"]) ?? "0";
-            model.TaxesPlanA = Convert.ToString(TempData["TaxesPlanA"]) ?? "0";
-            model.LoanTermPlanA = Convert.ToString(TempData["LoanTermPlanA"]) ?? "No Loan";
-            model.LoanStartDatePlanA = Convert.ToString(TempData["LoanStartDatePlanA"]) ?? "TBD";
-            model.InterestRatePlanA = Convert.ToString(TempData["InterestRatePlanA"]) ?? "0";
-            model.TotalInterestPaidPlanA = Convert.ToString(TempData["TotalInterestPaidPlanA"]) ?? "0";
-            model.TotalLoanAmountPlanA = Convert.ToString(TempData["TotalLoanAmountPlanA"]) ?? "0";
-            model.MonthlyPaymentPlanA = Convert.ToString(TempData["MonthlyPaymentPlanA"]) ?? "0";
+            model.TotalPaymentAmount = Convert.ToString(TempData["TotalPaymentAmount"]) ?? "0";
+            model.VehiclePrice = Convert.ToString(TempData["VehiclePrice"]) ?? "0";
+            model.DownPayment = Convert.ToString(TempData["DownPayment"]) ?? "0";
+            model.InsuranceType = Convert.ToString(TempData["InsuranceType"]) ?? "No Insurance";
+            model.InsurancePrice = Convert.ToString(TempData["INsurancePrice"]) ?? "0";
+            model.OtherFees = Convert.ToString(TempData["OtherFees"]) ?? "0";
+            model.TaxRate = Convert.ToString(TempData["TaxRate"]) ?? "0";
+            model.Taxes = Convert.ToString(TempData["Taxes"]) ?? "0";
+            model.LoanTerm = Convert.ToString(TempData["LoanTerm"]) ?? "No Loan";
+            model.LoanStartDate = Convert.ToString(TempData["LoanStartDate"]) ?? "TBD";
+            model.InterestRate = Convert.ToString(TempData["InterestRate"]) ?? "0";
+            model.TotalInterestPaid = Convert.ToString(TempData["TotalInterestPaid"]) ?? "0";
+            model.TotalLoanAmount = Convert.ToString(TempData["TotalLoanAmount"]) ?? "0";
+            model.MonthlyPayment = Convert.ToString(TempData["MonthlyPayment"]) ?? "0";
 
             return View(model);
         }

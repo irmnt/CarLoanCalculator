@@ -29,15 +29,70 @@ namespace CarLoanCalculator.Controllers
         public IActionResult Confirm(LoanViewModel model)
         {
             // To do - Utilize the selected plan to calculate the monthly payment
+            string plan = model.SelectedPlan.ToString();
 
-            decimal vehivlePrice = decimal.Parse(model.VehiclePricePlanA);
-            decimal downPayment = decimal.Parse(model.DownPaymentPlanA.ToString());
-            decimal insurancePrice = decimal.Parse(LoanDetails.GetInsurancePrice(model.InsuranceTypePlanA.ToString()));
-            decimal otherFees = decimal.Parse(model.OtherFeesPlanA.ToString());
-            var taxRate = model.TaxRatePlanA.ToString();
-            decimal interestRate = decimal.Parse(LoanDetails.GetInterestRate(model.LoanTermPlanA.ToString()).Replace("%", "").Trim());
+            decimal vehivlePrice = plan == "A" ? decimal.Parse(model.VehiclePricePlanA)
+                : plan == "B" ? decimal.Parse(model.VehiclePricePlanB)
+                : plan == "C" ? decimal.Parse(model.VehiclePricePlanC)
+                : 0;
+
+            decimal downPayment = plan == "A" ? decimal.Parse(model.DownPaymentPlanA.ToString())
+                : plan == "B" ? decimal.Parse(model.DownPaymentPlanB.ToString())
+                : plan == "C" ? decimal.Parse(model.DownPaymentPlanC.ToString())
+                : 0;
+
+            string insuranceType = plan == "A" ? LoanDetails.GetInsuranceType(model.InsuranceTypePlanA.ToString(), plan)
+                : plan == "B" ? LoanDetails.GetInsuranceType(model.InsuranceTypePlanB.ToString(), plan)
+                : plan == "C" ? LoanDetails.GetInsuranceType(model.InsuranceTypePlanC.ToString(), plan)
+                : "No Insurance";
+
+            decimal insurancePrice = plan == "A" ? decimal.Parse(LoanDetails.GetInsurancePrice(model.InsuranceTypePlanA.ToString(), plan))
+                : plan == "B" ? decimal.Parse(LoanDetails.GetInsurancePrice(model.InsuranceTypePlanB.ToString(), plan))
+                : plan == "C" ? decimal.Parse(LoanDetails.GetInsurancePrice(model.InsuranceTypePlanC.ToString(), plan)) 
+                : 0;
+
+            decimal otherFees = plan == "A"
+                ? decimal.Parse(model.OtherFeesPlanA.ToString())
+                : plan == "B"
+                ? decimal.Parse(model.OtherFeesPlanB.ToString())
+                : plan == "C"
+                ? decimal.Parse(model.OtherFeesPlanC.ToString())
+                : 0;
+
+            var taxRate = plan == "A" ? model.TaxRatePlanA.ToString()
+                : plan == "B" ? model.TaxRatePlanB.ToString()
+                : plan == "C" ? model.TaxRatePlanC.ToString()
+                : "0";
+
+            
+            decimal interestRate = plan == "A" 
+                ? decimal.Parse(LoanDetails.GetInterestRate(model.LoanTermPlanA.ToString(), plan).Replace("%", "").Trim())
+                : plan == "B" 
+                ? decimal.Parse(LoanDetails.GetInterestRate(model.LoanTermPlanB.ToString(), plan).Replace("%", "").Trim())
+                : plan == "C" 
+                ? decimal.Parse(LoanDetails.GetInterestRate(model.LoanTermPlanC.ToString(), plan).Replace("%", "").Trim())
+                : 0;
+
             decimal taxes = LoanDetails.CalculateTaxes(vehivlePrice, insurancePrice, otherFees, decimal.Parse(taxRate));
-            var loanTerm = LoanDetails.GetLoanTermToInt(model.LoanTermPlanA.ToString());
+            
+            var loanTerm = plan == "A"
+                ? LoanDetails.GetLoanTermToInt(model.LoanTermPlanA.ToString(), plan)
+                : plan == "B"
+                ? LoanDetails.GetLoanTermToInt(model.LoanTermPlanB.ToString(), plan)
+                : plan == "C"
+                ? LoanDetails.GetLoanTermToInt(model.LoanTermPlanC.ToString(), plan)
+                : 0;
+
+            string loanStartDate = plan == "A"
+                ? model.LoanStartDatePlanA.ToString()
+                : plan == "B"
+                ? model.LoanStartDatePlanB.ToString()
+                : plan == "C"
+                ? model.LoanStartDatePlanC.ToString()
+                : "04/2025";
+
+            string loanEndDate = LoanDetails.GetLoanEndDate(loanStartDate, loanTerm);
+
             decimal totalLoanAmount = LoanDetails.CalculateTotalLoanAmount(vehivlePrice, downPayment, insurancePrice, otherFees, taxes);
             decimal monthlyPayment = LoanDetails.CalcurateMonthlyPayment(vehivlePrice, downPayment, insurancePrice, otherFees, taxes, interestRate, loanTerm);
             decimal totalInterestPaid = LoanDetails.GetInterestPaid(monthlyPayment, totalLoanAmount, loanTerm);
@@ -47,14 +102,15 @@ namespace CarLoanCalculator.Controllers
             // memo: before storing it in TempData, converting to string
             TempData["VehiclePrice"] = vehivlePrice.ToString("F2");
             TempData["DownPayment"] = downPayment.ToString("F2");
-            TempData["InsuranceType"] = model.InsuranceTypePlanA.ToString();
+            TempData["InsuranceType"] = insuranceType;
             TempData["InsurancePrice"] = insurancePrice.ToString();
             TempData["OtherFees"] = otherFees.ToString("F2");
             TempData["TaxRate"] = model.TaxRatePlanA.ToString();
             TempData["InterestRate"] = interestRate.ToString();
             TempData["Taxes"] = taxes.ToString("F2");
             TempData["LoanTerm"] = model.LoanTermPlanA.ToString();
-            TempData["LoanStartDate"] = model.LoanStartDatePlanA.ToString();
+            TempData["LoanStartDate"] = loanStartDate;
+            TempData["LoanEndDate"] = loanEndDate;
             TempData["TotalLoanAmount"] = totalLoanAmount.ToString("F2");
             TempData["MonthlyPayment"] = monthlyPayment.ToString("F2");
             TempData["TotalInterestPaid"] = totalInterestPaid.ToString("F2");
@@ -76,6 +132,7 @@ namespace CarLoanCalculator.Controllers
             model.Taxes = Convert.ToString(TempData["Taxes"]) ?? "0";
             model.LoanTerm = Convert.ToString(TempData["LoanTerm"]) ?? "No Loan";
             model.LoanStartDate = Convert.ToString(TempData["LoanStartDate"]) ?? "TBD";
+            model.LoanEndDate = Convert.ToString(TempData["LoanEndDate"]) ?? "TBD";
             model.InterestRate = Convert.ToString(TempData["InterestRate"]) ?? "0";
             model.TotalInterestPaid = Convert.ToString(TempData["TotalInterestPaid"]) ?? "0";
             model.TotalLoanAmount = Convert.ToString(TempData["TotalLoanAmount"]) ?? "0";

@@ -1,4 +1,6 @@
-﻿namespace CarLoanCalculator.Models
+﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+
+namespace CarLoanCalculator.Models
 {
     public class LoanViewModel
     {
@@ -13,13 +15,14 @@
         public required string Taxes { get; set; }
         public required string LoanTerm { get; set; }
         public required string LoanStartDate { get; set; }
+        public required string LoanEndDate { get; set; }
         public required string InterestRate { get; set; }
         public required string TotalInterestPaid { get; set; }
         public required string TotalLoanAmount { get; set; }
         public required string MonthlyPayment { get; set; }
 
         // Selected Plan
-        public char SelectedPlan { get; set; }
+        public required string SelectedPlan { get; set; }
 
         /* Values of Plan A */
         public required string TotalPaymentAmountPlanA { get; set; }

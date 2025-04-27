@@ -8,7 +8,7 @@
 function validationCheck() {
     //event.preventDefault();
     // validation checks
-    let planSelected = document.querySelector('input[name="loanPlan"]:checked').value;
+    let planSelected = document.querySelector('input[name="SelectedPlan"]:checked').value;
 
     //shorthand for document.getElementById
     document.$ = (id) => document.getElementById(id);

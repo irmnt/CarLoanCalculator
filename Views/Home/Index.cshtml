@@ -128,28 +128,28 @@
 
                 <!-- Total Payment Amount -->
                 <div class="form-row">
-                    <label class="label">Total Payment Amount:</label>
-                    <span id="totalPaymentAmountPlanB"></span>
+                    <label for="totalPaymentAmountPlanB" class="label">Total Payment Amount:</label>
+                    <span asp-for="TotalPaymentAmountPlanB" id="totalPaymentAmountPlanB"></span>
                 </div>
 
                 <!-- Price of Vehicle -->
                 <div class="form-row">
                     <label for="vehiclePricePlanB" class="label">Price of Vehicle: </label>
-                    <input type="text" id="vehiclePricePlanB" placeholder="0" onblur="updateAllItems('B')">
+                    <input type="text" asp-for="VehiclePricePlanB" id="vehiclePricePlanB" placeholder="0" onblur="updateAllItems('B')">
                 </div>
 
                 <!-- Down Payment -->
                 <div class="form-row">
-                    <label for="downPaymentPlanB" class="label">Down Payment:</label>
-                    <input type="text" id="downPaymentPlanB" placeholder="0" onblur="updateAllItems('B')">
+                    <label class="label">Down Payment:</label>
+                    <input type="text" asp-for="DownPaymentPlanB" id="downPaymentPlanB" placeholder="0" onblur="updateAllItems('B')">
                 </div>
 
                 <div class="border-line"></div>
 
                 <!-- insurance Type -->
                 <div class="form-row">
-                    <label for="insuranceTypePlanB" class="label">Insurance Type:</label>
-                    <select name="insuranceTypePlanB" id="insuranceTypePlanB" oninput="updateAllItems('B')">
+                    <label class="label">Insurance Type:</label>
+                    <select name="insuranceTypePlanB" asp-for="InsuranceTypePlanB" id="insuranceTypePlanB" oninput="updateAllItems('B')">
                         <option value="select option"></option>
                         <option value="insuranceB_1yr">1 year guarantee</option>
                         <option value="insuranceB_3yrs">3 years guarantee</option>
@@ -166,14 +166,14 @@
 
                 <!-- Other Fees -->
                 <div class="form-row">
-                    <label for="otherFeesPlanB" class="label">Other Fees:</label>
-                    $  <input type="text" id="otherFeesPlanB" placeholder="0" onblur="updateAllItems('B')">
+                    <label class="label">Other Fees:</label>
+                    $  <input type="text" asp-for="OtherFeesPlanB" id="otherFeesPlanB" placeholder="0" onblur="updateAllItems('B')">
                 </div>
 
                 <!-- Tax Rate -->
                 <div class="form-row">
                     <label class="label">Tax Rate:</label>
-                    <input type="text" id="taxRatePlanB" placeholder="0" onblur="updateAllItems('B')">  %
+                    <input type="text" asp-for="TaxRatePlanB" id="taxRatePlanB" placeholder="0" onblur="updateAllItems('B')">  %
                 </div>
 
                 <!-- Taxes -->
@@ -184,8 +184,8 @@
 
                 <!-- Loan Term -->
                 <div class="form-row">
-                    <label for="loanTermPlanB" class="label">Loan Term:</label>
-                    <select name="loanTermPlanB" id="loanTermPlanB" oninput="updateAllItems('B')">
+                    <label class="label">Loan Term:</label>
+                    <select name="loanTermPlanB" asp-for="LoanTermPlanB" id="loanTermPlanB" oninput="updateAllItems('B')">
                         <option value="select option"></option>
                         <option value="loanTermB_12m">12 months</option>
                         <option value="loanTermB_36m">36 months</option>
@@ -197,31 +197,31 @@
                 <!-- Loan Start Date -->
                 <div class="form-row">
                     <label class="label">Loan Start Date:</label>
-                    <input type="text" id="loanStartDatePlanB" placeholder="mm/yyyy">
+                    <input type="text" asp-for="LoanStartDatePlanB" id="loanStartDatePlanB" placeholder="mm/yyyy">
                 </div>
 
                 <!-- Interest Rate -->
                 <div class="form-row">
                     <label class="label">Annual Interest Rate:</label>
-                    <span id="interestRatePlanB"></span>
+                    <span for="InterestRatePlanB" id="interestRatePlanB"></span>
                 </div>
 
                 <!-- Total Interest Paid -->
                 <div class="form-row">
                     <label class="label">Total Interest Paid:</label>
-                    <span id="totalInterestPaidPlanB"></span>
+                    <span for="TotalInterestPaidPlanB" id="totalInterestPaidPlanB"></span>
                 </div>
 
                 <!-- Total Loan Amount -->
                 <div class="form-row">
                     <label class="label">Total Loan Amount:</label>
-                    <span id="totalLoanAmountPlanB"></span>
+                    <span for="TotalLoanAmountPlanB" id="totalLoanAmountPlanB"></span>
                 </div>
 
                 <!-- Monthly Payment -->
                 <div class="form-row">
                     <label class="label">Monthly Payment: </label>
-                    <span id="monthlyPaymentPlanB"></span>
+                    <span for="MonthlyPaymentPlanB" id="monthlyPaymentPlanB"></span>
                 </div>
             </div>
 
@@ -235,28 +235,28 @@
 
                 <!-- Total Payment Amount -->
                 <div class="form-row">
-                    <label class="label">Total Payment Amount:</label>
-                    <span id="totalPaymentAmountPlanC"></span>
+                    <label for="totalPaymentAmountPlanC" class="label">Total Payment Amount:</label>
+                    <span asp-for="TotalPaymentAmountPlanC" id="totalPaymentAmountPlanC"></span>
                 </div>
 
                 <!-- Price of Vehicle -->
                 <div class="form-row">
                     <label for="vehiclePricePlanC" class="label">Price of Vehicle: </label>
-                    <input type="text" id="vehiclePricePlanC" placeholder="0" onblur="updateAllItems('C')">
+                    <input type="text" asp-for="VehiclePricePlanC" id="vehiclePricePlanC" placeholder="0" onblur="updateAllItems('C')">
                 </div>
 
                 <!-- Down Payment -->
                 <div class="form-row">
-                    <label for="downPaymentPlanC" class="label">Down Payment:</label>
-                    <input type="text" id="downPaymentPlanC" placeholder="0" onblur="updateAllItems('C')">
+                    <label class="label">Down Payment:</label>
+                    <input type="text" asp-for="DownPaymentPlanC" id="downPaymentPlanC" placeholder="0" onblur="updateAllItems('C')">
                 </div>
 
                 <div class="border-line"></div>
 
                 <!-- insurance Type -->
                 <div class="form-row">
-                    <label for="insuranceTypePlanC" class="label">Insurance Type:</label>
-                    <select name="insuranceTypePlanC" id="insuranceTypePlanC" oninput="updateAllItems('C')">
+                    <label class="label">Insurance Type:</label>
+                    <select name="insuranceTypePlanC" asp-for="InsuranceTypePlanC" id="insuranceTypePlanC" oninput="updateAllItems('C')">
                         <option value="select option"></option>
                         <option value="insuranceC_1yr">1 year guarantee</option>
                         <option value="insuranceC_3yrs">3 years guarantee</option>
@@ -273,14 +273,14 @@
 
                 <!-- Other Fees -->
                 <div class="form-row">
-                    <label for="otherFeesPlanC" class="label">Other Fees:</label>
-                    $  <input type="text" id="otherFeesPlanC" placeholder="0" onblur="updateAllItems('C')">
+                    <label class="label">Other Fees:</label>
+                    $  <input type="text" asp-for="OtherFeesPlanC" id="otherFeesPlanC" placeholder="0" onblur="updateAllItems('C')">
                 </div>
 
                 <!-- Tax Rate -->
                 <div class="form-row">
                     <label class="label">Tax Rate:</label>
-                    <input type="text" id="taxRatePlanC" placeholder="0" onblur="updateAllItems('C')">  %
+                    <input type="text" asp-for="TaxRatePlanC" id="taxRatePlanC" placeholder="0" onblur="updateAllItems('C')">  %
                 </div>
 
                 <!-- Taxes -->
@@ -291,8 +291,8 @@
 
                 <!-- Loan Term -->
                 <div class="form-row">
-                    <label for="loanTermPlanC" class="label">Loan Term:</label>
-                    <select name="loanTermPlanC" id="loanTermPlanC" oninput="updateAllItems('C')">
+                    <label class="label">Loan Term:</label>
+                    <select name="loanTermPlanC" asp-for="LoanTermPlanC" id="loanTermPlanC" oninput="updateAllItems('C')">
                         <option value="select option"></option>
                         <option value="loanTermC_12m">12 months</option>
                         <option value="loanTermC_36m">36 months</option>
@@ -304,31 +304,31 @@
                 <!-- Loan Start Date -->
                 <div class="form-row">
                     <label class="label">Loan Start Date:</label>
-                    <input type="text" id="loanStartDatePlanC" placeholder="mm/yyyy">
+                    <input type="text" asp-for="LoanStartDatePlanC" id="loanStartDatePlanC" placeholder="mm/yyyy">
                 </div>
 
                 <!-- Interest Rate -->
                 <div class="form-row">
                     <label class="label">Annual Interest Rate:</label>
-                    <span id="interestRatePlanC"></span>
+                    <span for="InterestRatePlanC" id="interestRatePlanC"></span>
                 </div>
 
                 <!-- Total Interest Paid -->
                 <div class="form-row">
                     <label class="label">Total Interest Paid:</label>
-                    <span id="totalInterestPaidPlanC"></span>
+                    <span for="TotalInterestPaidPlanC" id="totalInterestPaidPlanC"></span>
                 </div>
 
                 <!-- Total Loan Amount -->
                 <div class="form-row">
                     <label class="label">Total Loan Amount:</label>
-                    <span id="totalLoanAmountPlanC"></span>
+                    <span for="TotalLoanAmountPlanC" id="totalLoanAmountPlanC"></span>
                 </div>
 
                 <!-- Monthly Payment -->
                 <div class="form-row">
                     <label class="label">Monthly Payment: </label>
-                    <span id="monthlyPaymentPlanC"></span>
+                    <span for="MonthlyPaymentPlanC" id="monthlyPaymentPlanC"></span>
                 </div>
             </div>
         </div>

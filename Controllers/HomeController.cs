@@ -59,7 +59,7 @@ namespace CarLoanCalculator.Controllers
                 ? decimal.Parse(model.OtherFeesPlanC.ToString())
                 : 0;
 
-            var taxRate = plan == "A" ? model.TaxRatePlanA.ToString()
+            string taxRate = plan == "A" ? model.TaxRatePlanA.ToString()
                 : plan == "B" ? model.TaxRatePlanB.ToString()
                 : plan == "C" ? model.TaxRatePlanC.ToString()
                 : "0";
@@ -105,10 +105,10 @@ namespace CarLoanCalculator.Controllers
             TempData["InsuranceType"] = insuranceType;
             TempData["InsurancePrice"] = insurancePrice.ToString();
             TempData["OtherFees"] = otherFees.ToString("F2");
-            TempData["TaxRate"] = model.TaxRatePlanA.ToString();
+            TempData["TaxRate"] = taxRate;
             TempData["InterestRate"] = interestRate.ToString();
             TempData["Taxes"] = taxes.ToString("F2");
-            TempData["LoanTerm"] = model.LoanTermPlanA.ToString();
+            TempData["LoanTerm"] =loanTerm;
             TempData["LoanStartDate"] = loanStartDate;
             TempData["LoanEndDate"] = loanEndDate;
             TempData["TotalLoanAmount"] = totalLoanAmount.ToString("F2");

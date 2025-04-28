@@ -59,7 +59,7 @@ namespace CarLoanCalculator.Models
         {
             DateTime startDate = DateTime.Parse(loanStartDate);
             DateTime endDate = startDate.AddMonths(loanTerm);
-            return endDate.ToString("yyyy-MM-dd");
+            return endDate.ToString("MM/yyyy");
         }
 
         /* Calculate Total Loan Amount*/

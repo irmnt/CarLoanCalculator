@@ -4,7 +4,7 @@ namespace CarLoanCalculator.Models
 {
     public class LoanDetails
     {
-        /** Calcurate Total Payment */
+        /* Calcurate Total Payment */
         public static decimal CalculateTotalPayment(
             decimal vehivlePrice,
             decimal insurancePrice,
@@ -17,34 +17,52 @@ namespace CarLoanCalculator.Models
             return totalPayment;
         }
 
-        /**  Get Insurance Price */
-        public static string GetInsurancePrice(string insuranceType)
+        /* Get Vehicle Price */
+        public static string GetInsuranceType(string insuranceType, string plan)
         {
-            return insuranceType == "insuranceA_1yr" ? "1000"
-                : insuranceType == "insuranceA_3yrs" ? "2000"
-                : insuranceType == "insuranceA_5yrs" ? "2500"
-                : insuranceType == "insuranceA_10yrs" ? "3000" 
+            return insuranceType == "insurance" + plan + "_1yr" ? "Insurance 1 Year"
+                : insuranceType == "insurance" + plan + "_3yrs" ? "Insurance 3 Years"
+                : insuranceType == "insurance" + plan + "_5yrs" ? "Insurance 5 Years"
+                : insuranceType == "insurance" + plan + "_10yrs" ? "Insurance 10 Years"
+                : "No Insurance";
+        }
+
+        /*  Get Insurance Price */
+        public static string GetInsurancePrice(string insuranceType, string plan)
+        {
+            return insuranceType == "insurance" + plan + "_1yr" ? "1000"
+                : insuranceType == "insurance" + plan + "_3yrs" ? "2000"
+                : insuranceType == "insurance" + plan + "_5yrs" ? "2500"
+                : insuranceType == "insurance" + plan + "_10yrs" ? "3000" 
                 : "0";
         }
 
-        /** Calcurat Taxes */
+        /* Calcurat Taxes */
         public static decimal CalculateTaxes(decimal vehivlePrice, decimal insurancePrice, decimal otherFees, decimal taxRate)
         {
             var subTotal = vehivlePrice + insurancePrice + otherFees;
             return subTotal * (taxRate / 100);
         }
 
-        /** Get Interest Rate */
-        public static string GetInterestRate(string loanTerm)
+        /* Get Interest Rate */
+        public static string GetInterestRate(string loanTerm, string plan)
         {
-            return loanTerm == "loanTermA_12m" ? "1.5 %"
-                : loanTerm == "loanTermA_36m" ? "2.5 %"
-                : loanTerm == "loanTermA_60m" ? "3.5 %"
-                : loanTerm == "loanTermA_120m" ? "5.0 %"
+            return loanTerm == "loanTerm" + plan + "_12m" ? "1.5 %"
+                : loanTerm == "loanTerm" + plan + "_36m" ? "2.5 %"
+                : loanTerm == "loanTerm" + plan + "_60m" ? "3.5 %"
+                : loanTerm == "loanTerm" + plan + "_120m" ? "5.0 %"
                 : "0 %";
         }
 
-        /** Calculate Total Loan Amount*/
+        /* Get Loan End Date */
+        public static string GetLoanEndDate(string loanStartDate, int loanTerm)
+        {
+            DateTime startDate = DateTime.Parse(loanStartDate);
+            DateTime endDate = startDate.AddMonths(loanTerm);
+            return endDate.ToString("MM/yyyy");
+        }
+
+        /* Calculate Total Loan Amount*/
         public static decimal CalculateTotalLoanAmount(
             decimal vehivlePrice,
             decimal downPayment,
@@ -57,7 +75,7 @@ namespace CarLoanCalculator.Models
             return totalLoanAmount;
         }
 
-        /** Calculate Monthly Payment Amount */
+        /* Calculate Monthly Payment Amount */
         public static decimal CalcurateMonthlyPayment(
             decimal vehivlePrice,
             decimal downPayment,
@@ -78,17 +96,17 @@ namespace CarLoanCalculator.Models
             return (decimal)monthlyPayment;
         }
 
-        /** Get Loan Term Number */
-        public static int GetLoanTermToInt(string loanTermStr)
+        /* Get Loan Term Number */
+        public static int GetLoanTermToInt(string loanTermStr, string plan)
         {
-            return loanTermStr == "loanTermA_12m" ? 12
-                : loanTermStr == "loanTermA_36m" ? 36
-                : loanTermStr == "loanTermA_60m" ? 60
-                : loanTermStr == "loanTermA_120m" ? 120
+            return loanTermStr == "loanTerm" + plan + "_12m" ? 12
+                : loanTermStr == "loanTerm" + plan + "_36m" ? 36
+                : loanTermStr == "loanTerm" + plan + "_60m" ? 60
+                : loanTermStr == "loanTerm" + plan + "_120m" ? 120
                 : 0;
         }
 
-        /** Get Interest Paid Amount */
+        /* Get Interest Paid Amount */
         public static decimal GetInterestPaid(decimal monthlyPayment,
             decimal totalLoanAmount,
             int loanTerm

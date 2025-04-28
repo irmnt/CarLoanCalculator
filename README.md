@@ -3,6 +3,7 @@
 ### Overview  
 A car loan calculator built using ASP.NET Framework. This application allows users to calculate their monthly car loan payments based on various factors such as loan amount, interest rate, tax rate, and loan term. It supports three different loan plans (Plan A, Plan B, Plan C), providing flexibility for users to compare payment options.
 
+**[TRY ITS DEMO!](https://carloancalculator20250427223500-hfb4bsd9fsg9bafj.canadacentral-01.azurewebsites.net/)**
 
 ### Features
 * Supports three loan plans (A, B, and C)

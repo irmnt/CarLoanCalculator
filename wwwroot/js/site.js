@@ -250,3 +250,8 @@ function totalInterestPaidCalculator(plan) {
 
     document.getElementById('totalInterestPaidPlan' + plan).textContent = formatted;
 }
+
+
+function goBackToHome() {
+    window.location.href = '/Home/Index';
+}
